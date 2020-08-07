@@ -1,0 +1,40 @@
+{
+    "receiver": "webhook",
+    "status": "resolved",
+    "alerts": [
+        {
+            "status": "resolved",
+            "labels": {
+                "alertname": "PrometheusTargetMissing",
+                "instance": "localhost:9100",
+                "job": "sistema",
+                "severity": "critical"
+            },
+            "annotations": {
+                "description": "A Prometheus target has disappeared. An exporter might be crashed.\\n VALUE = 0\\n LABELS: map[__name__:up instance:localhost:9100 job:sistema]",
+                "summary": "Prometheus target missing (instanca localhost:9100)"
+            },
+            "startsAt": "2020-08-07T00:07:37.540050125Z",
+            "endsAt": "2020-08-07T00:08:07.540050125Z",
+            "generatorURL": "http://centos702.testing:9090/graph?g0.expr=up+%3D%3D+0\\u0026g0.tab=1",
+            "fingerprint": "f13b5343ed29b428"
+        }
+    ],
+    "groupLabels": {
+        "alertname": "PrometheusTargetMissing"
+    },
+    "commonLabels": {
+        "alertname": "PrometheusTargetMissing",
+        "instance": "localhost:9100",
+        "job": "sistema",
+        "severity": "critical"
+    },
+    "commonAnnotations": {
+        "description": "A Prometheus target has disappeared. An exporter might be crashed.\\n VALUE = 0\\n LABELS: map[__name__:up instance:localhost:9100 job:sistema]",
+        "summary": "Prometheus target missing (instancia localhost:9100)"
+    },
+    "externalURL": "http://centos702.testing:9093",
+    "version": "4",
+    "groupKey": "{}:{alertname=\"PrometheusTargetMissing\"}",
+    "truncatedAlerts": 0
+}
