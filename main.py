@@ -1,17 +1,27 @@
-from flask import Flask
-from bs4 import BeautifulSoup
-import requests
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-application = Flask(__name__)
+from io import BytesIO
 
-URL_COTIZACION_ORO_BCRA = "https://www.bcra.gob.ar/PublicacionesEstadisticas/Cotizacion_argentino_oro.asp"
 
-@application.route("/")
-def hello():
-    page = requests.get(URL_COTIZACION_ORO_BCRA)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    tabla = soup.find("div", {"class": "clearfix pagina-interior"})
-    return str(tabla)
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
-if __name__ == "__main__":
-    application.run(host='0.0.0.0', port=8080)
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b'Hello, world!')
+
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        body = self.rfile.read(content_length)
+        self.send_response(200)
+        self.end_headers()
+        response = BytesIO()
+        response.write(b'This is POST request. ')
+        response.write(b'Received: ')
+        response.write(body)
+        print(body)
+        self.wfile.write(response.getvalue())
+
+
+httpd = HTTPServer(('0.0.0.0', 8080), SimpleHTTPRequestHandler)
+httpd.serve_forever()
