@@ -182,7 +182,7 @@ def ParsearAlerta(alerta):
   )
   descripcion = "{} - {} - {}".format(
       titulo,
-      alerta.annotations.description,
+      alerta.annotations.message,
       "MENSAJE PREDETERMINADO"
   )
 
