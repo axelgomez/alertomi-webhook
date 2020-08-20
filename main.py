@@ -188,7 +188,7 @@ def ParsearAlerta(alerta):
       alerta.annotations.message,
       "MENSAJE PREDETERMINADO"
   )
-  payload = {'sistema': alerta.labels.service,'prioridad':prioridad_omi,'fecha':alerta.startsAt,'componente','estado':estado_servicio,'mensaje':descripcion,'indicaciones':"que hago?"} 
+  payload = {'sistema': alerta.labels.service,'prioridad':prioridad_omi,'fecha':alerta.startsAt,'componente':alerta.labels.pod,'estado':estado_servicio,'mensaje':descripcion,'indicaciones':"que hago?"} 
   r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
   print(r.url)
   #return aplicacion, ("{},{},{},{},{}".format(
