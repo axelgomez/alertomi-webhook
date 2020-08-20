@@ -14,4 +14,4 @@ RUN chmod 777 /app/log/alertmanager-omi-webhook.log
 
 EXPOSE 8080
 #CMD [ "uvicorn", "main:app", "--reload", "--host=0.0.0.0", "--port=8080"]
-CMD [ "python", "webserver-testigo.py" ]
+CMD [ "python", "webserver-testigo.py", "--port=8080" ]
