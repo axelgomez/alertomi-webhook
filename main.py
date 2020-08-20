@@ -73,7 +73,7 @@ class Alertas(BaseModel):
   groupKey: str
   truncatedAlerts: Optional[str]
 
-
+#soy leo hola
 '''
 {
   "receiver": "webhook",
