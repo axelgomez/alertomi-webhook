@@ -23,15 +23,24 @@ from datetime import date, timedelta, datetime
 
 class Labels(BaseModel):
   alertname: str
+  effect: str
+  endpoint: str
   instance: str
   job: str
+  key: str
+  namespace: str
+  node: str
+  pod: str
+  prometheus: str
+  service: str
   severity: str
 
 
-class Annotations(BaseModel):
-  description: str
-  summary: str
 
+class Annotations(BaseModel):
+  message: str
+#  description: str
+#  summary: str
 
 class Alerts(BaseModel):
   status: str
@@ -43,22 +52,31 @@ class Alerts(BaseModel):
   fingerprint: Optional[str]
 
 
-class GroupLabels(BaseModel):
-  instance: Optional[str]
-  severity: Optional[str]
-  alertname: Optional[str]
+#class GroupLabels(BaseModel):
+#  instance: Optional[str]
+# severity: Optional[str]
+#  alertname: Optional[str]
 
 
 class CommonLabels(BaseModel):
   alertname: str
+  effect: str
+  endpoint: str
   instance: str
   job: str
+  key: str
+  namespace: str
+  node: str
+  pod: str
+  prometheus: str
+  service: str
   severity: str
 
 
 class CommonAnnotations(BaseModel):
-  description: Optional[str]
-  summary: Optional[str]
+#  description: Optional[str]
+#  summary: Optional[str]
+  message: str
 
 
 class Alertas(BaseModel):
@@ -76,42 +94,57 @@ class Alertas(BaseModel):
 #soy leo hola
 '''
 {
-  "receiver": "webhook",
-  "status": "firing",
-  "alerts": [
-    {
-      "status": "firing",
-      "labels": {
-        "alertname": "PrometheusTargetMissing",
-        "instance": "localhost:9100",
-        "job": "node_exporter",
-        "severity": "critical"
-      },
-      "annotations": {
-        "description": "A Prometheus targets has disappeared. An exporter might be crashed.\n VALUE = 0\n LABELS: map[__name__:up instance:localhost:9100 job:node_exporter]",
-        "summary": "Prometheus target missing (instance localhost:9100)"
-      },
-      "startsAt": "2020-07-29T19:02:37.336992059Z",
-      "endsAt": "2020-07-29T19:06:37.336992059Z",
-      "generatorURL": "http://localhost:9090/graph?g0.expr=up+%3D%3D+0&g0.tab=1"
-    }
-  ],
-  "groupLabels": {
-    "instance": "localhost:9100",
-    "severity": "critical"
-  },
-  "commonLabels": {
-    "alertname": "PrometheusTargetMissing",
-    "instance": "localhost:9100",
-    "job": "node_exporter",
-    "severity": "critical"
-  },
-  "commonAnnotations": {
-    "description": "A Prometheus target has disappeared. An exporter might be crashed.\n VALUE = 0\n LABELS: map[__name__:up instance:localhost:9100)"
-  },
-  "externalURL": "http://localhost:9093",
-  "version": "4",
-  "groupKey": "{}:{instance=\"localhost:9100\", severity=\"critical\"}"
+   "receiver":"webhook",
+   "status":"firing",
+   "alerts":[
+      {
+         "status":"firing",
+         "labels":{
+            "alertname":"KubeNodeUnreachable",
+            "effect":"NoSchedule",
+            "endpoint":"https-main",
+            "instance":"10.130.0.19:8443",
+            "job":"kube-state-metrics",
+            "key":"node.kubernetes.io/unreachable",
+            "namespace":"openshift-monitoring",
+            "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+            "pod":"kube-state-metrics-7c858887c5-98swk",
+            "prometheus":"openshift-monitoring/k8s",
+            "service":"kube-state-metrics",
+            "severity":"warning"
+         },
+         "annotations":{
+            "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+         },
+         "startsAt":"2020-08-20T16:37:30.395075553Z",
+         "endsAt":"0001-01-01T00:00:00Z",
+         "generatorURL":"https://prometheus-k8s-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop/graph?g0.expr=kube_node_spec_taint%7Beffect%3D%22NoSchedule%22%2Cjob%3D%22kube-state-metrics%22%2Ckey%3D%22node.kubernetes.io%2Funreachable%22%7D+%3D%3D+1\u0026g0.tab=1",
+         "fingerprint":"86b60c836f0561c4"
+      }
+   ],
+   "groupLabels":{
+
+   },
+   "commonLabels":{
+      "alertname":"KubeNodeUnreachable",
+      "effect":"NoSchedule",
+      "endpoint":"https-main",
+      "instance":"10.130.0.19:8443",
+      "job":"kube-state-metrics",
+      "key":"node.kubernetes.io/unreachable",
+      "namespace":"openshift-monitoring",
+      "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+      "pod":"kube-state-metrics-7c858887c5-98swk",
+      "prometheus":"openshift-monitoring/k8s",
+      "service":"kube-state-metrics",
+      "severity":"warning"
+   },
+   "commonAnnotations":{
+      "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+   },
+   "externalURL":"https://alertmanager-main-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop",
+   "version":"4",
+   "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
 }
 '''
 
