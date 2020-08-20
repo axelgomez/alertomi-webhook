@@ -202,7 +202,7 @@ def AlmacenarEnLog(logger, alerta):
   else:
     estado_servicio = "UNKNOWN"
 
-  desc_servicio = alerta.annotations.description
+  desc_servicio = alerta.annotations.message
   hostaddress = alerta.labels.instance
   mensaje = "MENSAJE PREDETERMINADO"
 
