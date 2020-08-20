@@ -19,6 +19,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import logging
 from datetime import date, timedelta, datetime
+import requests
 
 
 class Labels(BaseModel):
@@ -147,6 +148,8 @@ class Alertas(BaseModel):
    "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
 }
 '''
+'''http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]'''
+
 
 
 class Item(BaseModel):
@@ -185,7 +188,9 @@ def ParsearAlerta(alerta):
       alerta.annotations.message,
       "MENSAJE PREDETERMINADO"
   )
-
+  payload = {'sistema': alerta.labels.service,'prioridad':prioridad_omi,'fecha':alerta.startsAt,'componente','estado':estado_servicio,'mensaje':descripcion,'indicaciones':"que hago?"} 
+  r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
+  print(r.url)
   #return aplicacion, ("{},{},{},{},{}".format(
   return aplicacion, titulo, descripcion, severidad_omi, prioridad_omi, estado_omi
 
