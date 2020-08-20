@@ -187,7 +187,6 @@ def AlmacenarEnLog(logger, alerta):
 
 
 #MAIN
-APP_PATH = "E:/DBlandIT/54cuatro/Wrapper"
 logger = logging.getLogger('alertmanager-omi-webhook')
 hdlr = logging.FileHandler('log/' + 'alertmanager-omi-webhook.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -200,7 +199,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  return {"Chau": "Programador"}
+  return {"Hola": "Leo"}
 
 
 @app.get("/items/{item_id}")
