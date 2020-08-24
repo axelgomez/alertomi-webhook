@@ -2,18 +2,73 @@
 
 '''
 El flujo es:
-1. entra JSON_ejemplo. Se loguea
-2. se parsea
-3. se valida si ya existe en el diccionario de alertas
-4. si existe se le asigna el id existente
-5. si no existe se espera a respuesta del omi para el id
-6. se envía al omi la actualización. Se loguea
-6.1 si el envío falla se envía mail (pendiente smtp) y se retorna. Se loguea
-7. se almacena el id en el diccionario
-8. 
+1. Se recibe la alerta de AlertManager
+2. FastAPI valida y parsea el JSON que recibe
+3. Se imprime por pantalla lo recibido
+4. Se obtienen las variables que importan
+5. Se envían al distribuidor de alertas dichas variables en un POST
+6. Se imprime la respuesta del POST
 
+Un Json de ejemplo es:
+{
+   "receiver":"webhook",
+   "status":"firing",
+   "alerts":[
+      {
+         "status":"firing",
+         "labels":{
+            "alertname":"KubeNodeUnreachable",
+            "effect":"NoSchedule",
+            "endpoint":"https-main",
+            "instance":"10.130.0.19:8443",
+            "job":"kube-state-metrics",
+            "key":"node.kubernetes.io/unreachable",
+            "namespace":"openshift-monitoring",
+            "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+            "pod":"kube-state-metrics-7c858887c5-98swk",
+            "prometheus":"openshift-monitoring/k8s",
+            "service":"kube-state-metrics",
+            "severity":"warning"
+         },
+         "annotations":{
+            "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+         },
+         "startsAt":"2020-08-20T16:37:30.395075553Z",
+         "endsAt":"0001-01-01T00:00:00Z",
+         "generatorURL":"https://prometheus-k8s-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop/graph?g0.expr=kube_node_spec_taint%7Beffect%3D%22NoSchedule%22%2Cjob%3D%22kube-state-metrics%22%2Ckey%3D%22node.kubernetes.io%2Funreachable%22%7D+%3D%3D+1\u0026g0.tab=1",
+         "fingerprint":"86b60c836f0561c4"
+      }
+   ],
+   "groupLabels":{
+
+   },
+   "commonLabels":{
+      "alertname":"KubeNodeUnreachable",
+      "effect":"NoSchedule",
+      "endpoint":"https-main",
+      "instance":"10.130.0.19:8443",
+      "job":"kube-state-metrics",
+      "key":"node.kubernetes.io/unreachable",
+      "namespace":"openshift-monitoring",
+      "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+      "pod":"kube-state-metrics-7c858887c5-98swk",
+      "prometheus":"openshift-monitoring/k8s",
+      "service":"kube-state-metrics",
+      "severity":"warning"
+   },
+   "commonAnnotations":{
+      "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+   },
+   "externalURL":"https://alertmanager-main-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop",
+   "version":"4",
+   "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
+}
+
+La URL del distribuidor de alertas es:
+http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]
 
 '''
+
 from typing import List, Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -91,65 +146,6 @@ class Alertas(BaseModel):
   version: str
   groupKey: str
   truncatedAlerts: Optional[str]
-
-#soy leo hola
-'''
-{
-   "receiver":"webhook",
-   "status":"firing",
-   "alerts":[
-      {
-         "status":"firing",
-         "labels":{
-            "alertname":"KubeNodeUnreachable",
-            "effect":"NoSchedule",
-            "endpoint":"https-main",
-            "instance":"10.130.0.19:8443",
-            "job":"kube-state-metrics",
-            "key":"node.kubernetes.io/unreachable",
-            "namespace":"openshift-monitoring",
-            "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
-            "pod":"kube-state-metrics-7c858887c5-98swk",
-            "prometheus":"openshift-monitoring/k8s",
-            "service":"kube-state-metrics",
-            "severity":"warning"
-         },
-         "annotations":{
-            "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
-         },
-         "startsAt":"2020-08-20T16:37:30.395075553Z",
-         "endsAt":"0001-01-01T00:00:00Z",
-         "generatorURL":"https://prometheus-k8s-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop/graph?g0.expr=kube_node_spec_taint%7Beffect%3D%22NoSchedule%22%2Cjob%3D%22kube-state-metrics%22%2Ckey%3D%22node.kubernetes.io%2Funreachable%22%7D+%3D%3D+1\u0026g0.tab=1",
-         "fingerprint":"86b60c836f0561c4"
-      }
-   ],
-   "groupLabels":{
-
-   },
-   "commonLabels":{
-      "alertname":"KubeNodeUnreachable",
-      "effect":"NoSchedule",
-      "endpoint":"https-main",
-      "instance":"10.130.0.19:8443",
-      "job":"kube-state-metrics",
-      "key":"node.kubernetes.io/unreachable",
-      "namespace":"openshift-monitoring",
-      "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
-      "pod":"kube-state-metrics-7c858887c5-98swk",
-      "prometheus":"openshift-monitoring/k8s",
-      "service":"kube-state-metrics",
-      "severity":"warning"
-   },
-   "commonAnnotations":{
-      "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
-   },
-   "externalURL":"https://alertmanager-main-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop",
-   "version":"4",
-   "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
-}
-'''
-'''http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]'''
-
 
 
 class Item(BaseModel):
@@ -237,7 +233,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  return {"Hola": "Leo"}
+  return {"Status": "Ok"}
 
 
 @app.get("/items/{item_id}")
