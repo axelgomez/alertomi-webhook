@@ -76,20 +76,72 @@ import logging
 from datetime import date, timedelta, datetime
 import requests
 
+variables_OMI = {
+  "KubeDaemonSetRolloutStuck": {
+  "alertname": "KubeDaemonSetRolloutStuck",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Daemon rollout stuck",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "ClusterOperatorDown": { 
+  "alertname": "ClusterOperatorDown",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Cluster Operator Down",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "ClusterOperatorDegraded":{ 
+  "alertname": "ClusterOperatorDegraded",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Cluster Operator Degraded",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "KubeDaemonSetMisScheduled": {
+  "alertname": "KubeDaemonSetMisScheduled",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Set Miss Scheduled",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "KubeNodeNotReady": {
+  "alertname": "KubeNodeNotReady",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Node Not Ready",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "KubeNodeUnreachable": {
+  "alertname": "KubeNodeUnreachable",
+  "componente": "Infraestructura",
+  "estado": "CRITICO",
+  "mensaje": "Node Unreachable",
+  "indicaciones": "Llamar a sistemas de 18 a 22"},
+  "AlertmanagerConfigInconsistenty":{
+  "alertname": "AlertmanagerConfigInconsistenty",
+  "componente": "Varios",
+  "estado": "CRITICO",
+  "mensaje": "AM Config Inconsistency",
+  "indicaciones": "Llamar a sistemas de 18 a 22"}
+  }
+
 
 class Labels(BaseModel):
   alertname: str
-  effect: str
-  endpoint: str
-  instance: str
-  job: str
-  key: str
-  namespace: str
-  node: str
-  pod: str
+  config_hash: Optional[str]
+  effect: Optional[str]
+  daemonset: Optional[str]
+  condition: Optional[str]
+  endpoint: Optional[str]
+  instance: Optional[str]
+  job: Optional[str]
+  key: Optional[str]
+  name: Optional[str]
+  namespace: Optional[str]
+  node: Optional[str]
+  pod: Optional[str]
   prometheus: str
+  reason: Optional[str]
   service: str
   severity: str
+  version: Optional[str]
+  status: Optional[str]
 
 
 
@@ -130,8 +182,8 @@ class CommonLabels(BaseModel):
 
 
 class CommonAnnotations(BaseModel):
-#  description: Optional[str]
-#  summary: Optional[str]
+  description: Optional[str]
+  summary: Optional[str]
   message: str
 
 
@@ -146,6 +198,64 @@ class Alertas(BaseModel):
   version: str
   groupKey: str
   truncatedAlerts: Optional[str]
+
+
+'''
+{
+   "receiver":"webhook",
+   "status":"firing",
+   "alerts":[
+      {
+         "status":"firing",
+         "labels":{
+            "alertname":"KubeNodeUnreachable",
+            "effect":"NoSchedule",
+            "endpoint":"https-main",
+            "instance":"10.130.0.19:8443",
+            "job":"kube-state-metrics",
+            "key":"node.kubernetes.io/unreachable",
+            "namespace":"openshift-monitoring",
+            "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+            "pod":"kube-state-metrics-7c858887c5-98swk",
+            "prometheus":"openshift-monitoring/k8s",
+            "service":"kube-state-metrics",
+            "severity":"warning"
+         },
+         "annotations":{
+            "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+         },
+         "startsAt":"2020-08-20T16:37:30.395075553Z",
+         "endsAt":"0001-01-01T00:00:00Z",
+         "generatorURL":"https://prometheus-k8s-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop/graph?g0.expr=kube_node_spec_taint%7Beffect%3D%22NoSchedule%22%2Cjob%3D%22kube-state-metrics%22%2Ckey%3D%22node.kubernetes.io%2Funreachable%22%7D+%3D%3D+1\u0026g0.tab=1",
+         "fingerprint":"86b60c836f0561c4"
+      }
+   ],
+   "groupLabels":{
+
+   },
+   "commonLabels":{
+      "alertname":"KubeNodeUnreachable",
+      "effect":"NoSchedule",
+      "endpoint":"https-main",
+      "instance":"10.130.0.19:8443",
+      "job":"kube-state-metrics",
+      "key":"node.kubernetes.io/unreachable",
+      "namespace":"openshift-monitoring",
+      "node":"swrk2024os.cltrnoprod.bancocredicoop.coop",
+      "pod":"kube-state-metrics-7c858887c5-98swk",
+      "prometheus":"openshift-monitoring/k8s",
+      "service":"kube-state-metrics",
+      "severity":"warning"
+   },
+   "commonAnnotations":{
+      "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
+   },
+   "externalURL":"https://alertmanager-main-openshift-monitoring.apps.cltrnoprod.bancocredicoop.coop",
+   "version":"4",
+   "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
+}
+'''
+'''http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]'''
 
 
 class Item(BaseModel):
@@ -179,12 +289,11 @@ def ParsearAlerta(alerta):
       alerta.labels.alertname,
       estado_servicio
   )
-  descripcion = "{} - {} - {}".format(
-      titulo,
-      alerta.annotations.message,
-      "MENSAJE PREDETERMINADO"
-  )
-  payload = {'sistema': alerta.labels.service,'prioridad':prioridad_omi,'fecha':alerta.startsAt,'componente':alerta.labels.pod,'estado':estado_servicio,'mensaje':descripcion,'indicaciones':"que hago?"} 
+  mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
+  indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones']
+  componente = variables_OMI[alerta.labels.alertname]['componente']
+  estado= variables_OMI[alerta.labels.alertname]['estado']
+  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
   print(r.json)
   #return aplicacion, ("{},{},{},{},{}".format(
