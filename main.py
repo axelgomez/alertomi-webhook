@@ -2,149 +2,14 @@
 
 '''
 El flujo es:
-1. entra JSON_ejemplo. Se loguea
-2. se parsea
-3. se valida si ya existe en el diccionario de alertas
-4. si existe se le asigna el id existente
-5. si no existe se espera a respuesta del omi para el id
-6. se envía al omi la actualización. Se loguea
-6.1 si el envío falla se envía mail (pendiente smtp) y se retorna. Se loguea
-7. se almacena el id en el diccionario
-8. 
+1. Se recibe la alerta de AlertManager
+2. FastAPI valida y parsea el JSON que recibe
+3. Se imprime por pantalla lo recibido
+4. Se obtienen las variables que importan
+5. Se envían al distribuidor de alertas dichas variables en un POST
+6. Se imprime la respuesta del POST
 
-
-'''
-from typing import List, Optional
-from fastapi import FastAPI
-from pydantic import BaseModel
-import logging
-from datetime import date, timedelta, datetime
-import requests
-
-variables_OMI = {
-  "KubeDaemonSetRolloutStuck": {
-  "alertname": "KubeDaemonSetRolloutStuck",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Daemon rollout stuck",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "ClusterOperatorDown": { 
-  "alertname": "ClusterOperatorDown",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Cluster Operator Down",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "ClusterOperatorDegraded":{ 
-  "alertname": "ClusterOperatorDegraded",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Cluster Operator Degraded",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeDaemonSetMisScheduled": {
-  "alertname": "KubeDaemonSetMisScheduled",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Set Miss Scheduled",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeNodeNotReady": {
-  "alertname": "KubeNodeNotReady",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Node Not Ready",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeNodeUnreachable": {
-  "alertname": "KubeNodeUnreachable",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Node Unreachable",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "AlertmanagerConfigInconsistenty":{
-  "alertname": "AlertmanagerConfigInconsistenty",
-  "componente": "Varios",
-  "estado": "CRITICO",
-  "mensaje": "AM Config Inconsistency",
-  "indicaciones": "Llamar a sistemas de 18 a 22"}
-  }
-
-
-class Labels(BaseModel):
-  alertname: str
-  config_hash: Optional[str]
-  effect: Optional[str]
-  daemonset: Optional[str]
-  condition: Optional[str]
-  endpoint: Optional[str]
-  instance: Optional[str]
-  job: Optional[str]
-  key: Optional[str]
-  name: Optional[str]
-  namespace: Optional[str]
-  node: Optional[str]
-  pod: Optional[str]
-  prometheus: str
-  reason: Optional[str]
-  service: str
-  severity: str
-  version: Optional[str]
-  status: Optional[str]
-
-
-
-class Annotations(BaseModel):
-  message: str
-#  description: str
-#  summary: str
-
-class Alerts(BaseModel):
-  status: str
-  labels: Labels
-  annotations: Annotations
-  startsAt: str
-  endsAt: str
-  generatorURL: str
-  fingerprint: Optional[str]
-
-
-#class GroupLabels(BaseModel):
-#  instance: Optional[str]
-# severity: Optional[str]
-#  alertname: Optional[str]
-
-
-class CommonLabels(BaseModel):
-  alertname: str
-  effect: str
-  endpoint: str
-  instance: str
-  job: str
-  key: str
-  namespace: str
-  node: str
-  pod: str
-  prometheus: str
-  service: str
-  severity: str
-
-
-class CommonAnnotations(BaseModel):
-  description: Optional[str]
-  summary: Optional[str]
-  message: str
-
-
-class Alertas(BaseModel):
-  receiver: str
-  status: str
-  alerts: List[Alerts]
-  #groupLabels: GroupLabels
-  #commonLabels: CommonLabels
-  #commonAnnotations: CommonAnnotations
-  externalURL: str
-  version: str
-  groupKey: str
-  truncatedAlerts: Optional[str]
-
-'''
+Un Json de ejemplo es:
 {
    "receiver":"webhook",
    "status":"firing",
@@ -198,9 +63,89 @@ class Alertas(BaseModel):
    "version":"4",
    "groupKey":"{}/{severity=~\"^(?:critical|warning)$\"}:{}"
 }
-'''
-'''http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]'''
 
+La URL del distribuidor de alertas es:
+http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE DEL SISTEMA]&prioridad=[ALTA]&fecha=[YYYY-MM-DD]&componente=[Redes]&estado=[MAYOR,CRITICO,CESE]&mensaje=[TEXTO]&indicaciones=[DESCRIPCION DE ACCION A TOMAR]
+
+'''
+
+from typing import List, Optional
+from fastapi import FastAPI
+from pydantic import BaseModel
+import logging
+from datetime import date, timedelta, datetime
+import requests
+
+
+class Labels(BaseModel):
+  alertname: str
+  effect: str
+  endpoint: str
+  instance: str
+  job: str
+  key: str
+  namespace: str
+  node: str
+  pod: str
+  prometheus: str
+  service: str
+  severity: str
+
+
+
+class Annotations(BaseModel):
+  message: str
+#  description: str
+#  summary: str
+
+class Alerts(BaseModel):
+  status: str
+  labels: Labels
+  annotations: Annotations
+  startsAt: str
+  endsAt: str
+  generatorURL: str
+  fingerprint: Optional[str]
+
+
+#class GroupLabels(BaseModel):
+#  instance: Optional[str]
+# severity: Optional[str]
+#  alertname: Optional[str]
+
+
+class CommonLabels(BaseModel):
+  alertname: str
+  effect: str
+  endpoint: str
+  instance: str
+  job: str
+  key: str
+  namespace: str
+  node: str
+  pod: str
+  prometheus: str
+  service: str
+  severity: str
+
+
+class CommonAnnotations(BaseModel):
+#  description: Optional[str]
+#  summary: Optional[str]
+  message: str
+
+
+class Alertas(BaseModel):
+  receiver: str
+  status: str
+  alerts: List[Alerts]
+  #groupLabels: GroupLabels
+  #commonLabels: CommonLabels
+  #commonAnnotations: CommonAnnotations
+  externalURL: str
+  version: str
+  groupKey: str
+  truncatedAlerts: Optional[str]
 
 
 class Item(BaseModel):
@@ -234,11 +179,12 @@ def ParsearAlerta(alerta):
       alerta.labels.alertname,
       estado_servicio
   )
-  mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
-  indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones']
-  componente = variables_OMI[alerta.labels.alertname]['componente']
-  estado= variables_OMI[alerta.labels.alertname]['estado']
-  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
+  descripcion = "{} - {} - {}".format(
+      titulo,
+      alerta.annotations.message,
+      "MENSAJE PREDETERMINADO"
+  )
+  payload = {'sistema': alerta.labels.service,'prioridad':prioridad_omi,'fecha':alerta.startsAt,'componente':alerta.labels.pod,'estado':estado_servicio,'mensaje':descripcion,'indicaciones':"que hago?"} 
   r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
   print(r.json)
   #return aplicacion, ("{},{},{},{},{}".format(
@@ -287,7 +233,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  return {"Hola": "Leo"}
+  return {"Status": "Ok"}
 
 
 @app.get("/items/{item_id}")
