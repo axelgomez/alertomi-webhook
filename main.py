@@ -297,11 +297,11 @@ def ParsearAlerta(alerta):
   r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
   print(r.json)
   #return aplicacion, ("{},{},{},{},{}".format(
-  return aplicacion, titulo, descripcion, severidad_omi, prioridad_omi, estado_omi
+  return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
 
 
 def AlmacenarEnLog(logger, alerta):
-  aplicacion, titulo, descripcion, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
+  aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
       alerta)
 
   #echo "$FECHA | $APLICACION | $NOTIFICATIONTYPE | $SERVICEDESC | $HOSTNAME | $HOSTADDRESS | $SERVICESTATE | $LONGDATETIME | $SERVICEOUTPUT | $MENSAJE | $ESTADO_OMI envia_OMI=$ENVIA_OMI | mail=$ENVIA_MAIL | " >> $LOG_FILE
@@ -360,10 +360,10 @@ def actualizar_alerta(
     *,
         alertas: Alertas):
     for a in alertas.alerts:
-      aplicacion, titulo, descripcion, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
+      aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
           a)
       print("{}|{}|{}|{}|{}|{}".format(aplicacion, titulo,
-                                       descripcion, severidad_omi, prioridad_omi, estado_omi))
+                                       mensaje, severidad_omi, prioridad_omi, estado_omi))
       AlmacenarEnLog(logger, a)
     return {"status": "OK"}
 
