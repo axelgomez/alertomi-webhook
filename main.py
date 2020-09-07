@@ -75,6 +75,7 @@ from pydantic import BaseModel
 import logging
 from datetime import date, timedelta, datetime
 import requests
+import json
 
 
 class Labels(BaseModel):
@@ -222,6 +223,10 @@ class Item(BaseModel):
 def ParsearAlerta(alerta):
   #se obtienen las variables a enviar al omi-notify-update.sh
   # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
+  f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
+  file_content = f.read()
+  variables_OMI = json.loads(file_content)
+  
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
     severidad_omi = "CRITICAL"
@@ -300,8 +305,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
-  print(f.read())
+  print(variables_OMI)
   return {"Status": "Ok"}
 
 
