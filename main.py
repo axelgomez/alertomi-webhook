@@ -76,51 +76,6 @@ import logging
 from datetime import date, timedelta, datetime
 import requests
 
-variables_OMI = {
-  "KubeDaemonSetRolloutStuck": {
-  "alertname": "KubeDaemonSetRolloutStuck",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Daemon rollout stuck",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "ClusterOperatorDown": { 
-  "alertname": "ClusterOperatorDown",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Cluster Operator Down",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "ClusterOperatorDegraded":{ 
-  "alertname": "ClusterOperatorDegraded",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Cluster Operator Degraded",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeDaemonSetMisScheduled": {
-  "alertname": "KubeDaemonSetMisScheduled",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Set Miss Scheduled",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeNodeNotReady": {
-  "alertname": "KubeNodeNotReady",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Node Not Ready",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "KubeNodeUnreachable": {
-  "alertname": "KubeNodeUnreachable",
-  "componente": "Infraestructura",
-  "estado": "CRITICO",
-  "mensaje": "Node Unreachable",
-  "indicaciones": "Llamar a sistemas de 18 a 22"},
-  "AlertmanagerConfigInconsistenty":{
-  "alertname": "AlertmanagerConfigInconsistenty",
-  "componente": "Varios",
-  "estado": "CRITICO",
-  "mensaje": "AM Config Inconsistency",
-  "indicaciones": "Llamar a sistemas de 18 a 22"}
-  }
-
 
 class Labels(BaseModel):
   alertname: str
@@ -345,6 +300,8 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
+  f = open("/etc/alert-omi-webhook-dictionary","r")
+  print(f.read())
   return {"Status": "Ok"}
 
 
