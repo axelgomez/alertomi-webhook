@@ -292,7 +292,7 @@ def ParsearAlerta(alerta):
   mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
   indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones']
   componente = variables_OMI[alerta.labels.alertname]['componente']
-  if alerta.labels.status=='resolved':
+  if alerta.status == 'resolved':
     estado = "CESE"
   else:  
     estado= variables_OMI[alerta.labels.alertname]['estado']
