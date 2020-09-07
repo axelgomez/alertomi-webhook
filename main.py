@@ -292,7 +292,10 @@ def ParsearAlerta(alerta):
   mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
   indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones']
   componente = variables_OMI[alerta.labels.alertname]['componente']
-  estado= variables_OMI[alerta.labels.alertname]['estado']
+  if alerta.labels.status=='resolved':
+    estado = "CESE"
+  else:  
+    estado= variables_OMI[alerta.labels.alertname]['estado']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
   print(r.json)
