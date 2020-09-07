@@ -300,7 +300,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  f = open("/etc/alert-omi-webhook-dictionary","r")
+  f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
   print(f.read())
   return {"Status": "Ok"}
 
