@@ -85,6 +85,7 @@ class Labels(BaseModel):
   daemonset: Optional[str]
   condition: Optional[str]
   endpoint: Optional[str]
+  enviroment: Optional[str]
   instance: Optional[str]
   job: Optional[str]
   key: Optional[str]
@@ -93,6 +94,7 @@ class Labels(BaseModel):
   node: Optional[str]
   pod: Optional[str]
   prometheus: str
+  region: Optional[str]
   reason: Optional[str]
   service: str
   severity: str
