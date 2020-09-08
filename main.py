@@ -226,6 +226,9 @@ def ParsearAlerta(alerta):
   f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
   file_content = f.read()
   variables_OMI = json.loads(file_content)
+  f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
+  file_config = f_config.read()
+  ruta_snsc = json.loads(file_config)
   
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
@@ -257,7 +260,7 @@ def ParsearAlerta(alerta):
   else:  
     estado= variables_OMI[alerta.labels.alertname]['estado']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
-  r = requests.post('http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php', params=payload)
+  r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   print(r.json)
   #return aplicacion, ("{},{},{},{},{}".format(
   return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
@@ -305,7 +308,6 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  print(variables_OMI)
   return {"Status": "Ok"}
 
 
