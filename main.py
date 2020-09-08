@@ -253,7 +253,7 @@ def ParsearAlerta(alerta):
       estado_servicio
   )
   mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
-  indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones'] + alerta.labels.instance
+  indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones'] + " instance:" +alerta.labels.instance
   componente = variables_OMI[alerta.labels.alertname]['componente']
   if alerta.status == 'resolved':
     estado = "CESE"
