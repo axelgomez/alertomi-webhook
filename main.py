@@ -332,6 +332,7 @@ def actualizar_alerta(
     for a in alertas.alerts:
       aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
           a)
+      print(a)
       print("{}|{}|{}|{}|{}|{}".format(aplicacion, titulo,
                                        mensaje, severidad_omi, prioridad_omi, estado_omi))
       AlmacenarEnLog(logger, a)
