@@ -258,7 +258,7 @@ def ParsearAlerta(alerta):
   )
 
   clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
-  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment
+  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment + "-" + variables_OMI[clave_dict]['TEC_ALERTNAME']
   indicaciones = variables_OMI[clave_dict]['TEC_MESSAGE']  
   componente = variables_OMI[clave_dict]['TEC_GROUPNAME']
   if alerta.status == 'resolved':
