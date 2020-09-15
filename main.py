@@ -78,9 +78,6 @@ import requests
 import json
 import smtplib
 
-s = smtplib.SMTP('smtp.gmail.com',587)
-s.starttls
-s.login("lferreyra@dblandit.com","ruperta260994")
 
 class Labels(BaseModel):
   alertname: str
@@ -236,11 +233,6 @@ def ParsearAlerta(alerta,s):
   file_config = f_config.read()
   ruta_snsc = json.loads(file_config)
   
-  message = """
-  Hello, this is a test message!
-  Illustrated for WTMatter Python Send Email Tutorial
-  <h1>How are you?</h1>
-  """
 
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
@@ -265,7 +257,6 @@ def ParsearAlerta(alerta,s):
       estado_servicio
   )
 
-  s.sendmail("lferreyra@dblandit.com","leofs.94@gmail.com",message)
   clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
   mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment
   indicaciones = variables_OMI[clave_dict]['TEC_MESSAGE']  
