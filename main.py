@@ -223,7 +223,7 @@ class Item(BaseModel):
   is_offer: Optional[bool] = None
 
 
-def ParsearAlerta(alerta,s):
+def ParsearAlerta(alerta):
   #se obtienen las variables a enviar al omi-notify-update.sh
   # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
   f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
