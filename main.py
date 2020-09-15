@@ -331,7 +331,7 @@ def actualizar_alerta(
     for a in alertas.alerts:
       aplicacion, titulo, mensaje, estado, componente, indicaciones = ParsearAlerta(
           a)
-      print("Recibido:{}".format(a))
+      print("{"+"Recibido:{}".format(a)+ "}")
       print("Enviado: {}|{}|{}|{}|{}|{}".format(aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
       #AlmacenarEnLog(logger, a)
