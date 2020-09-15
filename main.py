@@ -76,7 +76,11 @@ import logging
 from datetime import date, timedelta, datetime
 import requests
 import json
+import smtplib
 
+s = smtplib.SMTP('smtp.gmail.com',587)
+s.starttls
+s.login("lferreyra@dblandit.com","ruperta260994")
 
 class Labels(BaseModel):
   alertname: str
@@ -222,7 +226,7 @@ class Item(BaseModel):
   is_offer: Optional[bool] = None
 
 
-def ParsearAlerta(alerta):
+def ParsearAlerta(alerta,s):
   #se obtienen las variables a enviar al omi-notify-update.sh
   # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
   f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
@@ -232,6 +236,12 @@ def ParsearAlerta(alerta):
   file_config = f_config.read()
   ruta_snsc = json.loads(file_config)
   
+  message = """
+  Hello, this is a test message!
+  Illustrated for WTMatter Python Send Email Tutorial
+  <h1>How are you?</h1>
+  """
+
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
     severidad_omi = "CRITICAL"
@@ -255,6 +265,7 @@ def ParsearAlerta(alerta):
       estado_servicio
   )
 
+  s.sendmail("lferreyra@dblandit.com","leofs.94@gmail.com",message)
   clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
   mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment
   indicaciones = variables_OMI[clave_dict]['TEC_MESSAGE']  
@@ -263,7 +274,7 @@ def ParsearAlerta(alerta):
     estado = "CESE"
   else:  
     estado= variables_OMI[clave_dict]['TEC_SEVERITY']
-  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'region':alerta.labels.region,'indicaciones':indicaciones} 
+  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   print(r.json)
   return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
