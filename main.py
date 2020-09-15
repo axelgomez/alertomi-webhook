@@ -262,7 +262,7 @@ def ParsearAlerta(alerta):
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
-    estado= variables_OMI[clave_dict]['estado']
+    estado= variables_OMI[clave_dict]['TEC_SEVERITY']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'region':alerta.labels.region,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   print(r.json)
