@@ -102,7 +102,15 @@ class Labels(BaseModel):
   version: Optional[str]
   status: Optional[str]
 
-
+  
+#Establish SMTP Connection
+#s = smtplib.SMTP('smtp.gmail.com', 587) 
+  
+#Start TLS based SMTP Session
+#s.starttls() 
+ 
+#Login Using Your Email ID & Password
+#s.login("your-email@id.com", "your-email-ID-PASSWORD")
 
 class Annotations(BaseModel):
   message: str
@@ -232,7 +240,8 @@ def ParsearAlerta(alerta):
   f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
   file_config = f_config.read()
   ruta_snsc = json.loads(file_config)
-  
+  #Email Body Content
+  #message = "mensaje de prueba a enviar por mail"
 
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
@@ -267,6 +276,10 @@ def ParsearAlerta(alerta):
     estado= variables_OMI[clave_dict]['TEC_ESTADO']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
+  #Enviar Email
+  #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
+  #Terminating the SMTP Session
+  #s.quit()
   return aplicacion, titulo, mensaje, estado, componente, indicaciones
 
 
