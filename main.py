@@ -267,8 +267,7 @@ def ParsearAlerta(alerta):
     estado= variables_OMI[clave_dict]['TEC_SEVERITY']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
-  print(r.json)
-  return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
+  return aplicacion, titulo, mensaje, estado, componente, indicaciones
 
 
 def AlmacenarEnLog(logger, alerta):
@@ -330,12 +329,12 @@ def actualizar_alerta(
     *,
         alertas: Alertas):
     for a in alertas.alerts:
-      aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
+      aplicacion, titulo, mensaje, estado, componente, indicaciones = ParsearAlerta(
           a)
-      print(a)
-      print("{}|{}|{}|{}|{}|{}".format(aplicacion, titulo,
-                                       mensaje, severidad_omi, prioridad_omi, estado_omi))
-      AlmacenarEnLog(logger, a)
+      print("Recibido:{}".format(a))
+      print("Enviado: {}|{}|{}|{}|{}|{}".format(aplicacion, titulo,
+                                       mensaje, estado, componente, indicaciones))
+      #AlmacenarEnLog(logger, a)
     return {"status": "OK"}
 
 
