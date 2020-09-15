@@ -258,13 +258,13 @@ def ParsearAlerta(alerta):
   )
 
   clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
-  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment + "-" + variables_OMI[clave_dict]['TEC_ALERTNAME']
-  indicaciones = variables_OMI[clave_dict]['TEC_MESSAGE']  
-  componente = variables_OMI[clave_dict]['TEC_GROUPNAME']
+  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment + "-" + variables_OMI[clave_dict]['TEC_ALERTNAME'] + "-" + alerta.labels.instance
+  indicaciones = variables_OMI[clave_dict]['TEC_INDICACIONES']  
+  componente = variables_OMI[clave_dict]['TEC_COMPONENTE']
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
-    estado= variables_OMI[clave_dict]['TEC_SEVERITY']
+    estado= variables_OMI[clave_dict]['TEC_ESTADO']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   return aplicacion, titulo, mensaje, estado, componente, indicaciones
