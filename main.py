@@ -254,17 +254,18 @@ def ParsearAlerta(alerta):
       alerta.labels.alertname,
       estado_servicio
   )
-  mensaje = variables_OMI[alerta.labels.alertname]['mensaje']
-  indicaciones = variables_OMI[alerta.labels.alertname]['indicaciones'] + "-region:" +alerta.labels.region + "-enviroment:" + alerta.labels.enviroment 
-  componente = variables_OMI[alerta.labels.alertname]['componente']
+  mensaje = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['ORG_MESSAGE']
+  indicaciones = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['TEC_MESSAGE']
+  region = alerta.labels.region
+  enviroment = alerta.labels.enviroment 
+  componente = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['TEC_GROUPNAME']
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
-    estado= variables_OMI[alerta.labels.alertname]['estado']
+    estado= variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['estado']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   print(r.json)
-  #return aplicacion, ("{},{},{},{},{}".format(
   return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
 
 
@@ -342,3 +343,5 @@ def actualizar_alerta(
         alertas: Alertas):
     dict_alertas = alertas.dict()
     return dict_alertas
+
+
