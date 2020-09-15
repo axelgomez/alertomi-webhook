@@ -254,16 +254,16 @@ def ParsearAlerta(alerta):
       alerta.labels.alertname,
       estado_servicio
   )
-  mensaje = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['ORG_MESSAGE']
-  indicaciones = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['TEC_MESSAGE']
-  region = alerta.labels.region
-  enviroment = alerta.labels.enviroment 
-  componente = variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['TEC_GROUPNAME']
+
+  clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
+  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment
+  indicaciones = variables_OMI[clave_dict]['TEC_MESSAGE']  
+  componente = variables_OMI[clave_dict]['TEC_GROUPNAME']
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
-    estado= variables_OMI[(alerta.labels.alertname,alerta.labels.severity)]['estado']
-  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
+    estado= variables_OMI[clave_dict]['estado']
+  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'region':alerta.labels.region,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   print(r.json)
   return aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi
@@ -272,7 +272,6 @@ def ParsearAlerta(alerta):
 def AlmacenarEnLog(logger, alerta):
   aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
       alerta)
-
   #echo "$FECHA | $APLICACION | $NOTIFICATIONTYPE | $SERVICEDESC | $HOSTNAME | $HOSTADDRESS | $SERVICESTATE | $LONGDATETIME | $SERVICEOUTPUT | $MENSAJE | $ESTADO_OMI envia_OMI=$ENVIA_OMI | mail=$ENVIA_MAIL | " >> $LOG_FILE
   if (alerta.status == "firing"):
     estado_servicio = alerta.labels.severity.upper()
