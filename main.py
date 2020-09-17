@@ -86,7 +86,7 @@ class Labels(BaseModel):
   daemonset: Optional[str]
   condition: Optional[str]
   endpoint: Optional[str]
-  enviroment: Optional[str]
+  environment: Optional[str]
   instance: Optional[str]
   job: Optional[str]
   key: Optional[str]
