@@ -267,13 +267,13 @@ def ParsearAlerta(alerta):
   )
 
   clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
-  mensaje = variables_OMI[clave_dict]['ORG_MESSAGE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment + "-" + variables_OMI[clave_dict]['TEC_ALERTNAME'] + "-" + alerta.labels.instance
-  indicaciones = variables_OMI[clave_dict]['TEC_INDICACIONES']  
-  componente = variables_OMI[clave_dict]['TEC_COMPONENTE']
+  mensaje = variables_OMI[clave_dict]['MENSAJE'] + "-" + alerta.labels.region + "-" + alerta.labels.enviroment + "-" + alerta.labels.instance
+  indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
+  componente = variables_OMI[clave_dict]['COMPONENTE']
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
-    estado= variables_OMI[clave_dict]['TEC_ESTADO']
+    estado= variables_OMI[clave_dict]['ESTADO']
   payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
   r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
   #Enviar Email
