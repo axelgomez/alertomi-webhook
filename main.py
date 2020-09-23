@@ -72,7 +72,6 @@ http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE
 from typing import List, Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
-import logging
 from datetime import date, timedelta, datetime
 import requests
 import json
@@ -286,45 +285,7 @@ def ParsearAlerta(alerta):
   #s.quit()
   return aplicacion, titulo, mensaje, estado, componente, indicaciones
 
-
-def AlmacenarEnLog(logger, alerta):
-  aplicacion, titulo, mensaje, severidad_omi, prioridad_omi, estado_omi = ParsearAlerta(
-      alerta)
-  #echo "$FECHA | $APLICACION | $NOTIFICATIONTYPE | $SERVICEDESC | $HOSTNAME | $HOSTADDRESS | $SERVICESTATE | $LONGDATETIME | $SERVICEOUTPUT | $MENSAJE | $ESTADO_OMI envia_OMI=$ENVIA_OMI | mail=$ENVIA_MAIL | " >> $LOG_FILE
-  if (alerta.status == "firing"):
-    estado_servicio = alerta.labels.severity.upper()
-  elif(alerta.status == "resolved"):
-    estado_servicio = "OK"
-  else:
-    estado_servicio = "UNKNOWN"
-
-  desc_servicio = alerta.annotations.message
-  hostaddress = alerta.labels.instance
-  mensaje = "MENSAJE PREDETERMINADO"
-
-  logger.info("{} | {} | {} | {}".format(
-      aplicacion,
-      desc_servicio,
-      hostaddress,
-      estado_servicio,
-      mensaje,
-      estado_omi,
-      severidad_omi
-  )
-  )
-  return
-
-
-#MAIN
-logger = logging.getLogger('alertmanager-omi-webhook')
-hdlr = logging.FileHandler('log/' + 'alertmanager-omi-webhook.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-hdlr.setFormatter(formatter)
-logger.addHandler(hdlr)
-logger.setLevel(logging.DEBUG)
-
 app = FastAPI()
-
 
 @app.get("/")
 def read_root():
@@ -351,7 +312,6 @@ def actualizar_alerta(
       print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(a)+ "}")
       print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(a.startsAt,aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
-      #AlmacenarEnLog(logger, a)
     return {"status": "OK"}
 
 
