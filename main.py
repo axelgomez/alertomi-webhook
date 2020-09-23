@@ -270,7 +270,7 @@ def ParsearAlerta(alerta):
   mensaje = variables_OMI[clave_dict]['MENSAJE'] + "-" + alerta.labels.region + "-" + alerta.labels.environment 
   indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
   componente = variables_OMI[clave_dict]['COMPONENTE']
-  if "node" in alerta.labels:
+  if hasattr(alerta.labels,'node'):
     mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.instance
   else:
     mensaje += "-" + alerta.labels.instance
