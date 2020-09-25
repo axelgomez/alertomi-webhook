@@ -115,9 +115,9 @@ class Labels(BaseModel):
   version: Optional[str]
   verb: Optional[str]
   status: Optional[str]
-  type: Optional[str]
 
-  
+
+
 #Establish SMTP Connection
 #s = smtplib.SMTP('smtp.gmail.com', 587) 
   
@@ -247,6 +247,7 @@ class Item(BaseModel):
 
 
 def ParsearAlerta(alerta):
+  Labels.type = Optional[str]
   #se obtienen las variables a enviar al omi-notify-update.sh
   # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
   f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
