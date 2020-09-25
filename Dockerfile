@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 EXPOSE 8080
-#CMD [ "uvicorn", "main:app", "--reload", "--host=0.0.0.0", "--port=8080"]
-CMD [ "python", "webserver-testigo.py"]
+CMD [ "uvicorn", "main:app", "--reload", "--host=0.0.0.0", "--port=8080"]
+#CMD [ "python", "webserver-testigo.py"]
 
 

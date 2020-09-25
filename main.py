@@ -95,7 +95,9 @@ class Labels(BaseModel):
   job_name: Optional[str]
   job: Optional[str]
   key: Optional[str]
+  hostname: Optional[str]
   name: Optional[str]
+  plugin_id: Optional[str]
   namespace: Optional[str]
   node: Optional[str]
   pod: Optional[str]
@@ -110,6 +112,7 @@ class Labels(BaseModel):
   version: Optional[str]
   verb: Optional[str]
   status: Optional[str]
+  type: Optional[str]
 
   
 #Establish SMTP Connection
