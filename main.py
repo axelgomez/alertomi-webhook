@@ -75,7 +75,10 @@ http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE
 '''
 
 from typing import List, Optional
-from fastapi import FastAPI
+from fastapi import FastAPI,Request,status
+from fastapi.enconders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from datetime import date, timedelta, datetime
 import requests
@@ -283,9 +286,9 @@ def ParsearAlerta(alerta):
   indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
   componente = variables_OMI[clave_dict]['COMPONENTE']
   if hasattr(alerta.labels,'node') and alerta.labels.node != None:
-    mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.instance
+    mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.namespace
   else:
-    mensaje += "-" + alerta.labels.instance
+    mensaje += "-" + alerta.labels.namespace
   if alerta.status == 'resolved':
     estado = "CESE"
   else:  
@@ -303,6 +306,14 @@ app = FastAPI()
 @app.get("/")
 def read_root():
   return {"Status": "Ok"}
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
+    )
 
 
 @app.get("/items/{item_id}")
