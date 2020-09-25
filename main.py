@@ -28,7 +28,11 @@ Un Json de ejemplo es:
             "pod":"kube-state-metrics-7c858887c5-98swk",
             "prometheus":"openshift-monitoring/k8s",
             "service":"kube-state-metrics",
-            "severity":"warning"
+            "severity":"warning",
+            "version" : "0.37.0",
+            "phase" : "Failed",
+            "verb" : "LIST"
+            "exported_namespace": "credicoop-metrics"
          },
          "annotations":{
             "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
@@ -55,7 +59,7 @@ Un Json de ejemplo es:
       "prometheus":"openshift-monitoring/k8s",
       "service":"kube-state-metrics",
       "severity":"warning"
-      "version" :
+      "version" : "0.37.0"
    },
    "commonAnnotations":{
       "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
@@ -99,6 +103,7 @@ class Labels(BaseModel):
   reason: Optional[str]
   exported_namespace: Optional[str]
   phase: Optional[str]
+  resource: Optional[str]
   service: str
   severity: str
   version: Optional[str]
