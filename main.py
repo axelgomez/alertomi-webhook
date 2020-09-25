@@ -76,7 +76,7 @@ http://snsc-desa.bancocredicoop.coop/consola-gerproc/alertas.php?sistema=[NOMBRE
 
 from typing import List, Optional
 from fastapi import FastAPI,Request,status
-from fastapi.enconders import jsonable_encoder
+from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
