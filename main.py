@@ -92,6 +92,7 @@ class Labels(BaseModel):
   endpoint: Optional[str]
   environment: Optional[str]
   instance: Optional[str]
+  job_name: Optional[str]
   job: Optional[str]
   key: Optional[str]
   name: Optional[str]
