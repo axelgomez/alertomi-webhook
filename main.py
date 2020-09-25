@@ -55,6 +55,7 @@ Un Json de ejemplo es:
       "prometheus":"openshift-monitoring/k8s",
       "service":"kube-state-metrics",
       "severity":"warning"
+      "version" :
    },
    "commonAnnotations":{
       "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
@@ -96,9 +97,12 @@ class Labels(BaseModel):
   prometheus: str
   region: Optional[str]
   reason: Optional[str]
+  exported_namespace: Optional[str]
+  phase: Optional[str]
   service: str
   severity: str
   version: Optional[str]
+  verb: Optional[str]
   status: Optional[str]
 
   
