@@ -85,7 +85,7 @@ import requests
 import json
 import smtplib
 
-
+#Especificar comentario para modificacion de estructura
 class Labels(BaseModel):
   alertname: str
   config_hash: Optional[str]
@@ -299,8 +299,8 @@ def ParsearAlerta(alerta):
   #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
   #Terminating the SMTP Session
   #s.quit()
-  return aplicacion, titulo, mensaje, estado, componente, indicaciones
-
+  return alerta
+#Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
 app = FastAPI()
 
 @app.get("/")
