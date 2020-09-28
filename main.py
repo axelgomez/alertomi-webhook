@@ -294,9 +294,13 @@ def ParsearAlerta(alerta):
       estado = "CESE"
     else:  
       estado= variables_OMI[clave_dict]['ESTADO']
-    payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
-    r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
+
+    if("OMI" in variables_OMI[clave_dict]["ENVIO"]):
+      payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
+      r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
+
     #Enviar Email
+    #if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
     #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
     #Terminating the SMTP Session
     #s.quit()
