@@ -305,7 +305,7 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except Exception as e:
-    return e 
+    print(e) 
 #Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
 app = FastAPI()
 
