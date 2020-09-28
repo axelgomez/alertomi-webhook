@@ -299,7 +299,7 @@ def ParsearAlerta(alerta):
   #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
   #Terminating the SMTP Session
   #s.quit()
-  print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(alerta)+ "}")
+  print("{}-Recibido:".format(alerta.startsAt) + "{" + "{}".format(alerta)+ "}")
   print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
   return alerta
