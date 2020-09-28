@@ -304,13 +304,14 @@ def ParsearAlerta(alerta):
     print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
     return alerta
-  except Exception as e:
+  except RequestValidationError as e:
     print(e) 
 #Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
 app = FastAPI()
 
 @app.get("/")
 def read_root():
+  raise RequestValidationError()
   return {"Status": "Ok"}
 
 
