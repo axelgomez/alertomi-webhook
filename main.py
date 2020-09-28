@@ -336,9 +336,9 @@ def actualizar_alerta(
     for a in alertas.alerts:
       alerta = ParsearAlerta(
           a)
-      print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(a)+ "}")
-      print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(a.startsAt,aplicacion, titulo,
-                                       mensaje, estado, componente, indicaciones))
+#      print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(a)+ "}")
+#      print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(a.startsAt,aplicacion, titulo,
+#                                       mensaje, estado, componente, indicaciones))
     return {"status": "OK"}
 
 
