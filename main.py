@@ -299,6 +299,9 @@ def ParsearAlerta(alerta):
   #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
   #Terminating the SMTP Session
   #s.quit()
+  print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(alerta)+ "}")
+  print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
+                                       mensaje, estado, componente, indicaciones))
   return alerta
 #Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
 app = FastAPI()
@@ -331,7 +334,7 @@ def actualizar_alerta(
     *,
         alertas: Alertas):
     for a in alertas.alerts:
-      aplicacion, titulo, mensaje, estado, componente, indicaciones = ParsearAlerta(
+      alerta = ParsearAlerta(
           a)
       print("{}-Recibido:".format(a.startsAt) + "{" + "{}".format(a)+ "}")
       print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(a.startsAt,aplicacion, titulo,
