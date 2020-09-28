@@ -311,7 +311,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  raise RequestValidationError()
+  raise RequestValidationError("Error")
   return {"Status": "Ok"}
 
 
