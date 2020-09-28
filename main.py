@@ -247,62 +247,65 @@ class Item(BaseModel):
 
 
 def ParsearAlerta(alerta):
-  #se obtienen las variables a enviar al omi-notify-update.sh
-  # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
-  f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
-  file_content = f.read()
-  variables_OMI = json.loads(file_content)
-  f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
-  file_config = f_config.read()
-  ruta_snsc = json.loads(file_config)
-  #Email Body Content
-  #message = "mensaje de prueba a enviar por mail"
+  try:
+    #se obtienen las variables a enviar al omi-notify-update.sh
+    # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
+    f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
+    file_content = f.read()
+    variables_OMI = json.loads(file_content)
+    f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
+    file_config = f_config.read()
+    ruta_snsc = json.loads(file_config)
+    #Email Body Content
+    #message = "mensaje de prueba a enviar por mail"
 
-  if (alerta.status == "firing"):
-    estado_servicio = alerta.labels.severity.upper()
-    severidad_omi = "CRITICAL"
-    prioridad_omi = "highest"
-    estado_omi = "O"
-  elif(alerta.status == "resolved"):
-    estado_servicio = "OK"
-    severidad_omi = "NORMAL"
-    prioridad_omi = "lowest"
-    estado_omi = "R"
-  else:
-    estado_servicio = "DESCONOCIDO"
-    severidad_omi = "DESCONOCIDA"
-    prioridad_omi = ""
-    estado_omi = ""
+    if (alerta.status == "firing"):
+      estado_servicio = alerta.labels.severity.upper()
+      severidad_omi = "CRITICAL"
+      prioridad_omi = "highest"
+      estado_omi = "O"
+    elif(alerta.status == "resolved"):
+      estado_servicio = "OK"
+      severidad_omi = "NORMAL"
+      prioridad_omi = "lowest"
+      estado_omi = "R"
+    else:
+      estado_servicio = "DESCONOCIDO"
+      severidad_omi = "DESCONOCIDA"
+      prioridad_omi = ""
+      estado_omi = ""
 
-  aplicacion = alerta.labels.job
-  titulo = "{} - {} - {}".format(
-      alerta.labels.instance,
-      alerta.labels.alertname,
-      estado_servicio
-  )
+    aplicacion = alerta.labels.job
+    titulo = "{} - {} - {}".format(
+        alerta.labels.instance,
+        alerta.labels.alertname,
+        estado_servicio
+    )
 
-  clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
-  mensaje = variables_OMI[clave_dict]['MENSAJE'] + "-" + alerta.labels.region + "-" + alerta.labels.environment 
-  indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
-  componente = variables_OMI[clave_dict]['COMPONENTE']
-  if hasattr(alerta.labels,'node') and alerta.labels.node != None:
-    mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.namespace
-  else:
-    mensaje += "-" + alerta.labels.namespace
-  if alerta.status == 'resolved':
-    estado = "CESE"
-  else:  
-    estado= variables_OMI[clave_dict]['ESTADO']
-  payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
-  r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
-  #Enviar Email
-  #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
-  #Terminating the SMTP Session
-  #s.quit()
-  print("{}-Recibido:".format(alerta.startsAt) + "{" + "{}".format(alerta)+ "}")
-  print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
+    clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
+    mensaje = variables_OMI[clave_dict]['MENSAJE'] + "-" + alerta.labels.region + "-" + alerta.labels.environment 
+    indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
+    componente = variables_OMI[clave_dict]['COMPONENTE']
+    if hasattr(alerta.labels,'node') and alerta.labels.node != None:
+      mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.namespace
+    else:
+      mensaje += "-" + alerta.labels.namespace
+    if alerta.status == 'resolved':
+      estado = "CESE"
+    else:  
+      estado= variables_OMI[clave_dict]['ESTADO']
+    payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
+    r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
+    #Enviar Email
+    #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
+    #Terminating the SMTP Session
+    #s.quit()
+    print("{}-Recibido:".format(alerta.startsAt) + "{" + "{}".format(alerta)+ "}")
+    print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
-  return alerta
+    return alerta
+  except Exception as e:
+    return e 
 #Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
 app = FastAPI()
 
