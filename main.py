@@ -325,10 +325,12 @@ def read_root():
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    return JSONResponse(
+    json_error = JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors(), "body": exc.body})
     )
+    print(json_error)
+    return json_error
 
 
 @app.get("/items/{item_id}")
