@@ -312,7 +312,7 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except RequestValidationError as e:
-    raise RequestValidationError(alerta,e)
+    raise RequestValidationError(r,e)
  
 
 app = FastAPI()
