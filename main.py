@@ -312,14 +312,14 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except Exception as e:
-    raise Exception(e)
+    raise RequestValidationError(e)
  
 
 app = FastAPI()
 
 @app.get("/")
 def read_root():
-  raise Exception('{"Error":"me equivoque"}')
+  raise RequestValidationError('{"Error":"me equivoque"}')
   return {"Status": "Ok"}
 
 
