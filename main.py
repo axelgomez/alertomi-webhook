@@ -312,7 +312,6 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except Exception as e:
-    print(e)
     raise Exception(e)
  
 
