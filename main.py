@@ -88,7 +88,9 @@ import smtplib
 #Especificar comentario para modificacion de estructura
 class Labels(BaseModel):
   alertname: str
+  alertmanager: Optional[str]
   config_hash: Optional[str]
+  deployment: Optional[str]
   effect: Optional[str]
   daemonset: Optional[str]
   condition: Optional[str]
