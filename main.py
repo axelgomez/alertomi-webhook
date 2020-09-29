@@ -310,6 +310,7 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except RequestValidationError as e:
+    print(e)
     raise RequestValidationError(e)
  
 
