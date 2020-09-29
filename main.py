@@ -310,13 +310,13 @@ def ParsearAlerta(alerta):
                                        mensaje, estado, componente, indicaciones))
     return alerta
   except RequestValidationError as e:
-    print(e) 
-#Agregar envio de mail en caso de recibir la expcetion 422, agregar mail destino a la config
+    raise RequestValidationError(e)
+ 
+
 app = FastAPI()
 
 @app.get("/")
 def read_root():
-  raise RequestValidationError("Error")
   return {"Status": "Ok"}
 
 
