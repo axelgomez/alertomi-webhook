@@ -319,7 +319,6 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  raise RequestValidationError('"Error":"me equivoque"')
   return {"Status": "Ok"}
 
 
