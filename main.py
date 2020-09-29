@@ -81,6 +81,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from datetime import date, timedelta, datetime
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 import requests
 import json
 import smtplib
@@ -122,10 +124,10 @@ class Labels(BaseModel):
 
   
 #Establish SMTP Connection
-#s = smtplib.SMTP('smtp.gmail.com', 587) 
+s = smtplib.SMTP('http://smtp.bancocredicoop.coop', 25) 
   
 #Start TLS based SMTP Session
-#s.starttls() 
+s.starttls() 
  
 #Login Using Your Email ID & Password
 #s.login("your-email@id.com", "your-email-ID-PASSWORD")
@@ -258,9 +260,10 @@ def ParsearAlerta(alerta):
     variables_OMI = json.loads(file_content)
     f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
     file_config = f_config.read()
-    ruta_snsc = json.loads(file_config)
+    config = json.loads(file_config)
     #Email Body Content
-    #message = "mensaje de prueba a enviar por mail"
+    
+   
 
     if (alerta.status == "firing"):
       estado_servicio = alerta.labels.severity.upper()
@@ -300,13 +303,20 @@ def ParsearAlerta(alerta):
 
     if("OMI" in variables_OMI[clave_dict]["ENVIO"]):
       payload = {'sistema': 'ESB Contenedores','prioridad':'ALTA','fecha':alerta.startsAt,'componente':componente,'estado':estado,'mensaje':mensaje,'indicaciones':indicaciones} 
-      r = requests.post(ruta_snsc['ruta_snsc'], params=payload)
+      r = requests.post(config['ruta_snsc'], params=payload)
 
     #Enviar Email
-    #if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
-    #s.sendmail("<sender-email-address>", "<receiver-email-address>", message)
+    if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
+      tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
+      subject= "| ".join(tupla) 
+      message="""From: {}
+      To: {}\n
+      Subject: {}\n
+      {}
+      """.format(config['sender_alertas'],config['dest_alertas'],subject,alerta)
+      s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
     #Terminating the SMTP Session
-    #s.quit()
+    s.quit()
     print("{}-Recibido:".format(alerta.startsAt) + "{" + "{}".format(alerta)+ "}")
     print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
                                        mensaje, estado, componente, indicaciones))
