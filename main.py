@@ -332,7 +332,7 @@ def ParsearAlerta(alerta):
         if alerta.startsAt != None:
             mensaje_recibido += "{}".format(alerta.startsAt)
             mensaje_enviado += "{}".format(alerta.startsAt)
-    mensaje_recibido += " - Recibido: \{{}\}".format(alerta)
+    mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
     mensaje_enviado += "{}|{}|{}|{}|{}|{}".format(aplicacion,
                                                   titulo,
                                                   mensaje,
