@@ -281,7 +281,7 @@ def ParsearAlerta(alerta):
     titulo = ""
     if hasattr(alerta.labels,'instance'):
       if alerta.labels.instance != None:
-          titulo += "{} - ".format(alerta.labels.instance)
+        titulo += "{} - ".format(alerta.labels.instance)
     
     titulo += "{} - {}".format(
         alerta.labels.alertname,
@@ -290,8 +290,8 @@ def ParsearAlerta(alerta):
 
     clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
     if clave_dict not in variables_OMI:
-    	mensaje_recibido = ""
-    	if hasattr(alerta,'startsAt'):
+      mensaje_recibido = ""
+      if hasattr(alerta,'startsAt'):
         if alerta.startsAt != None:
         mensaje_recibido += "{}".format(alerta.startsAt)
     mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
@@ -352,7 +352,7 @@ def ParsearAlerta(alerta):
     return alerta
   except RequestValidationError as e:
     raise RequestValidationError(r,e)
- 
+
 
 app = FastAPI()
 
