@@ -340,7 +340,7 @@ def ParsearAlerta(alerta):
                                                   componente,
                                                   indicaciones)
     print("{}".format(mensaje_recibido))
-    print("{}".format(mensaje_enviado)
+    print("{}".format(mensaje_enviado))
     return alerta
   except RequestValidationError as e:
     raise RequestValidationError(r,e)
