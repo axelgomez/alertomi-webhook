@@ -278,20 +278,33 @@ def ParsearAlerta(alerta):
       estado_omi = ""
 
     aplicacion = alerta.labels.job
-    titulo = "{} - {} - {}".format(
-        alerta.labels.instance,
+    titulo = ""
+    if hasattr(alerta.labels,'instance'):
+        if alerta.labels.instance != None:
+            titulo += "{} - ".format(alerta.labels.instance)
+    
+    titulo += "{} - {}".format(
         alerta.labels.alertname,
         estado_servicio
     )
 
     clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
-    mensaje = variables_OMI[clave_dict]['MENSAJE'] + "-" + alerta.labels.region + "-" + alerta.labels.environment 
+    mensaje = "{}".format(variables_OMI[clave_dict]['MENSAJE'])
+    if hasattr(alerta.labels,'region'):
+        if alerta.labels.region != None:
+            mensaje += " - {}".format(alerta.labels.region)
+    if hasattr(alerta.labels,'environment'):
+        if alerta.labels.environment != None:
+            mensaje += " - {}".format(alerta.labels.environment)
     indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
     componente = variables_OMI[clave_dict]['COMPONENTE']
-    if hasattr(alerta.labels,'node') and alerta.labels.node != None:
-      mensaje +=  "-node:{}".format(alerta.labels.node) + "-" + alerta.labels.namespace
-    else:
-      mensaje += "-" + alerta.labels.namespace
+    if hasattr(alerta.labels,'node'):
+        if alerta.labels.node != None:
+            mensaje += " - node:{}".format(alerta.labels.node)
+    if hasattr(alerta.labels,'namespace'):
+        if alerta.labels.namespace != None:
+            mensaje += " - namespace:{}".format(alerta.labels.namespace)
+
     if alerta.status == 'resolved':
       estado = "CESE"
     else:  
@@ -313,9 +326,21 @@ def ParsearAlerta(alerta):
 #      s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
     #Terminating the SMTP Session
 #    s.quit()
-    print("{}-Recibido:".format(alerta.startsAt) + "{" + "{}".format(alerta)+ "}")
-    print("{}-Enviado: {}|{}|{}|{}|{}|{}".format(alerta.startsAt,aplicacion, titulo,
-                                       mensaje, estado, componente, indicaciones))
+    mensaje_recibido = ""
+    mensaje_enviado = ""
+    if hasattr(alerta,'startsAt'):
+        if alerta.startsAt != None:
+            mensaje_recibido += "{}".format(alerta.startsAt)
+            mensaje_enviado += "{}".format(alerta.startsAt)
+    mensaje_recibido += " - Recibido: \{{}\}".format(alerta)
+    mensaje_enviado += "{}|{}|{}|{}|{}|{}".format(aplicacion,
+                                                  titulo,
+                                                  mensaje,
+                                                  estado,
+                                                  componente,
+                                                  indicaciones)
+    print("{}".format(mensaje_recibido))
+    print("{}".format(mensaje_enviado)
     return alerta
   except RequestValidationError as e:
     raise RequestValidationError(r,e)
