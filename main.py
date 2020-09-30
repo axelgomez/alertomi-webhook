@@ -293,7 +293,7 @@ def ParsearAlerta(alerta):
       mensaje_recibido = ""
       if hasattr(alerta,'startsAt'):
         if alerta.startsAt != None:
-        mensaje_recibido += "{}".format(alerta.startsAt)
+          mensaje_recibido += "{}".format(alerta.startsAt)
     mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
     print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
 
