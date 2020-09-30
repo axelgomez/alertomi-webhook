@@ -90,6 +90,7 @@ import smtplib
 #Especificar comentario para modificacion de estructura
 class Labels(BaseModel):
   alertname: str
+  severity: str
   alertmanager: Optional[str]
   config_hash: Optional[str]
   deployment: Optional[str]
@@ -109,14 +110,13 @@ class Labels(BaseModel):
   node: Optional[str]
   pod: Optional[str]
   container: Optional[str]
-  prometheus: str
+  prometheus: Optional[str]
   region: Optional[str]
   reason: Optional[str]
   exported_namespace: Optional[str]
   phase: Optional[str]
   resource: Optional[str]
-  service: str
-  severity: str
+  service: Optional[str]
   version: Optional[str]
   verb: Optional[str]
   status: Optional[str]
