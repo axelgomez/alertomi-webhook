@@ -294,8 +294,8 @@ def ParsearAlerta(alerta):
       if hasattr(alerta,'startsAt'):
         if alerta.startsAt != None:
           mensaje_recibido += "{}".format(alerta.startsAt)
-    mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
-    print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
+      mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
+      print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
 
     mensaje = "{}".format(variables_OMI[clave_dict]['MENSAJE'])
     if hasattr(alerta.labels,'region'):
