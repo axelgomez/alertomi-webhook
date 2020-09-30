@@ -17,6 +17,8 @@ Un Json de ejemplo es:
       {
          "status":"firing",
          "labels":{
+            "region": "VERA",
+            "environment": "NO PROD",
             "alertname":"KubeNodeUnreachable",
             "effect":"NoSchedule",
             "endpoint":"https-main",
@@ -28,11 +30,7 @@ Un Json de ejemplo es:
             "pod":"kube-state-metrics-7c858887c5-98swk",
             "prometheus":"openshift-monitoring/k8s",
             "service":"kube-state-metrics",
-            "severity":"warning",
-            "version" : "0.37.0",
-            "phase" : "Failed",
-            "verb" : "LIST"
-            "exported_namespace": "credicoop-metrics"
+            "severity":"warning"
          },
          "annotations":{
             "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
@@ -44,7 +42,6 @@ Un Json de ejemplo es:
       }
    ],
    "groupLabels":{
-
    },
    "commonLabels":{
       "alertname":"KubeNodeUnreachable",
@@ -59,7 +56,6 @@ Un Json de ejemplo es:
       "prometheus":"openshift-monitoring/k8s",
       "service":"kube-state-metrics",
       "severity":"warning"
-      "version" : "0.37.0"
    },
    "commonAnnotations":{
       "message":"swrk2024os.cltrnoprod.bancocredicoop.coop is unreachable and some workloads may be rescheduled."
