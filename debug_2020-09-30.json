@@ -1,0 +1,1972 @@
+{
+  "receiver": "webhook",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "api",
+        "namespace": "openshift-apiserver",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "api",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "50% of the api/api targets in openshift-apiserver namespace are down."
+      },
+      "startsAt": "2020-09-29T17:52:00.163Z",
+      "endsAt": "2020-09-29T17:58:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "a885b4780d193af6"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterMonitoringOperatorReconciliationErrors",
+        "endpoint": "https",
+        "environment": "Contingencia",
+        "instance": "10.193.0.15:8443",
+        "job": "cluster-monitoring-operator",
+        "namespace": "openshift-monitoring",
+        "pod": "cluster-monitoring-operator-7b58cf55bb-wzxr9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-monitoring-operator",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Cluster Monitoring Operator is experiencing reconciliation error rate of 25%."
+      },
+      "startsAt": "2020-09-29T19:32:36.662Z",
+      "endsAt": "2020-09-29T19:58:36.662Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28cluster_monitoring_operator_reconcile_errors_total%5B15m%5D%29+%2A+100+%2F+rate%28cluster_monitoring_operator_reconcile_attempts_total%5B15m%5D%29+%3E+10&g0.tab=1",
+      "fingerprint": "49458e7e5fd05346"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "etcd",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator etcd has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:59.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "3d07c26ef39045c6"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-apiserver",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-apiserver has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "09e39c2a3e41564f"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-controller-manager",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-controller-manager has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "acd2f588e9751c04"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-scheduler",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-scheduler has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "93a1353e0d50acc1"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "machine-config",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator machine-config has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:10:59.213Z",
+      "endsAt": "2020-09-29T19:47:59.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "390b6b49527d5936"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "monitoring",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator monitoring has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:12:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "9a733127abab43e6"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "network",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator network has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:11:29.213Z",
+      "endsAt": "2020-09-29T19:47:59.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "261c9b5972402388"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDown",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "openshift-apiserver",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical",
+        "version": "4.5.7"
+      },
+      "annotations": {
+        "message": "Cluster operator openshift-apiserver has not been available for 10 mins. Operator may be down or disabled, cluster will not be kept up to date and upgrades will not be possible."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:48:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_up%7Bjob%3D%22cluster-version-operator%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "12a52ee64eebd120"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "etcd",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "EtcdMembers_UnhealthyMembers::NodeController_MasterNodesReady",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator etcd has been degraded for 10 mins. Operator is degraded because EtcdMembers_UnhealthyMembers::NodeController_MasterNodesReady and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "1c124a601c938adb"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-apiserver",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "NodeController_MasterNodesReady",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-apiserver has been degraded for 10 mins. Operator is degraded because NodeController_MasterNodesReady and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "48516b3db9513017"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-controller-manager",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "NodeController_MasterNodesReady",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-controller-manager has been degraded for 10 mins. Operator is degraded because NodeController_MasterNodesReady and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "5cb2d47b7fd1f26c"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "kube-scheduler",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "NodeController_MasterNodesReady",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator kube-scheduler has been degraded for 10 mins. Operator is degraded because NodeController_MasterNodesReady and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "ffb574c27332bddd"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "machine-config",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "MachineConfigDaemonFailed",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator machine-config has been degraded for 10 mins. Operator is degraded because MachineConfigDaemonFailed and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:10:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "c536bff1f168bc2d"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "monitoring",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "UpdatingnodeExporterFailed",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator monitoring has been degraded for 10 mins. Operator is degraded because UpdatingnodeExporterFailed and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:12:59.213Z",
+      "endsAt": "2020-09-29T19:47:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "b81ccffae3a8d863"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "network",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "RolloutHung",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator network has been degraded for 10 mins. Operator is degraded because RolloutHung and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:11:29.213Z",
+      "endsAt": "2020-09-29T19:47:59.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "3bc15a1de37f82b2"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "ClusterOperatorDegraded",
+        "condition": "Degraded",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "instance": "10.168.12.4:9099",
+        "job": "cluster-version-operator",
+        "name": "openshift-apiserver",
+        "namespace": "openshift-cluster-version",
+        "pod": "cluster-version-operator-86c7669dd7-r6zf9",
+        "prometheus": "openshift-monitoring/k8s",
+        "reason": "APIServerDeployment_UnavailablePod",
+        "region": "Vera",
+        "service": "cluster-version-operator",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Cluster operator openshift-apiserver has been degraded for 10 mins. Operator is degraded because APIServerDeployment_UnavailablePod and cluster upgrades will be unstable."
+      },
+      "startsAt": "2020-09-29T19:02:59.213Z",
+      "endsAt": "2020-09-29T19:48:29.213Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=cluster_operator_conditions%7Bcondition%3D%22Degraded%22%2Cjob%3D%22cluster-version-operator%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "6f3df91d3924a39d"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "controller-manager",
+        "namespace": "openshift-controller-manager",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "controller-manager",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the controller-manager/controller-manager targets in openshift-controller-manager namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:00.163Z",
+      "endsAt": "2020-09-29T19:47:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "1ba874faead42bdd"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "dns-default",
+        "namespace": "openshift-dns",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "dns-default",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "14.29% of the dns-default/dns-default targets in openshift-dns namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:06:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "3da6527e6c1b11b2"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "elasticsearch-metrics",
+        "namespace": "openshift-logging",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "elasticsearch-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the elasticsearch-metrics/elasticsearch-metrics targets in openshift-logging namespace are down."
+      },
+      "startsAt": "2020-09-29T17:52:30.163Z",
+      "endsAt": "2020-09-29T17:59:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "dfca23e733579418"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "etcdMembersDown",
+        "environment": "Contingencia",
+        "job": "etcd",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "etcd cluster \"etcd\": members are down (1)."
+      },
+      "startsAt": "2020-09-29T18:53:45.353Z",
+      "endsAt": "2020-09-29T19:50:15.353Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=max+by%28job%29+%28sum+by%28job%29+%28up%7Bjob%3D~%22.%2Aetcd.%2A%22%7D+%3D%3D+bool+0%29+or+count+by%28job%2C+endpoint%29+%28sum+by%28job%2C+endpoint%2C+To%29+%28rate%28etcd_network_peer_sent_failures_total%7Bjob%3D~%22.%2Aetcd.%2A%22%7D%5B3m%5D%29%29+%3E+0.01%29%29+%3E+0&g0.tab=1",
+      "fingerprint": "54dbdcaa4e4697b1"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "etcd",
+        "namespace": "openshift-etcd",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "etcd",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the etcd/etcd targets in openshift-etcd namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:48:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "6d4b2d9dd1556cfd"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "FluentdQueueLengthBurst",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "hostname": "fluentd-sk5xz",
+        "instance": "10.193.0.50:24231",
+        "job": "fluentd",
+        "namespace": "openshift-logging",
+        "plugin_id": "clo_default_output_es",
+        "pod": "fluentd-sk5xz",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "fluentd",
+        "severity": "warning",
+        "type": "elasticsearch"
+      },
+      "annotations": {
+        "message": "In the last minute, fluentd 10.193.0.50:24231 buffer queue length increased more than 32. Current value is 255.98293447103526.",
+        "summary": "Fluentd is overwhelmed"
+      },
+      "startsAt": "2020-09-29T17:54:22.178Z",
+      "endsAt": "2020-09-29T17:55:22.178Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=delta%28fluentd_output_status_buffer_queue_length%5B1m%5D%29+%3E+32&g0.tab=1",
+      "fingerprint": "aa840cac07754867"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "FluentdQueueLengthBurst",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "hostname": "fluentd-d95mb",
+        "instance": "10.193.2.2:24231",
+        "job": "fluentd",
+        "namespace": "openshift-logging",
+        "plugin_id": "clo_default_output_es",
+        "pod": "fluentd-d95mb",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "fluentd",
+        "severity": "warning",
+        "type": "elasticsearch"
+      },
+      "annotations": {
+        "message": "In the last minute, fluentd 10.193.2.2:24231 buffer queue length increased more than 32. Current value is 80.05870972046166.",
+        "summary": "Fluentd is overwhelmed"
+      },
+      "startsAt": "2020-09-29T19:53:22.178Z",
+      "endsAt": "2020-09-29T19:53:52.178Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=delta%28fluentd_output_status_buffer_queue_length%5B1m%5D%29+%3E+32&g0.tab=1",
+      "fingerprint": "2c3b10ed877a16f6"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "FluentdQueueLengthBurst",
+        "endpoint": "metrics",
+        "environment": "Contingencia",
+        "hostname": "fluentd-n77fw",
+        "instance": "10.193.4.14:24231",
+        "job": "fluentd",
+        "namespace": "openshift-logging",
+        "plugin_id": "clo_default_output_es",
+        "pod": "fluentd-n77fw",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "fluentd",
+        "severity": "warning",
+        "type": "elasticsearch"
+      },
+      "annotations": {
+        "message": "In the last minute, fluentd 10.193.4.14:24231 buffer queue length increased more than 32. Current value is 55.97574384433412.",
+        "summary": "Fluentd is overwhelmed"
+      },
+      "startsAt": "2020-09-29T17:52:22.178Z",
+      "endsAt": "2020-09-29T17:53:52.178Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=delta%28fluentd_output_status_buffer_queue_length%5B1m%5D%29+%3E+32&g0.tab=1",
+      "fingerprint": "e0c1790d4d3a1397"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "image-registry",
+        "namespace": "openshift-image-registry",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "image-registry",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the image-registry/image-registry targets in openshift-image-registry namespace are down."
+      },
+      "startsAt": "2020-09-29T17:52:00.163Z",
+      "endsAt": "2020-09-29T17:58:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "4163bb0f856a3d02"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeClientErrors",
+        "environment": "Contingencia",
+        "instance": "10.168.12.2:10257",
+        "job": "kube-controller-manager",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Kubernetes API server client 'kube-controller-manager/10.168.12.2:10257' is experiencing 9.878% errors.'"
+      },
+      "startsAt": "2020-09-29T17:57:32.039Z",
+      "endsAt": "2020-09-29T18:01:02.039Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28sum+by%28instance%2C+job%29+%28rate%28rest_client_requests_total%7Bcode%3D~%225..%22%7D%5B5m%5D%29%29+%2F+sum+by%28instance%2C+job%29+%28rate%28rest_client_requests_total%5B5m%5D%29%29%29+%3E+0.01&g0.tab=1",
+      "fingerprint": "ee820ee9a928bf75"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "kube-controller-manager",
+        "namespace": "openshift-kube-controller-manager",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-controller-manager",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the kube-controller-manager/kube-controller-manager targets in openshift-kube-controller-manager namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:00.163Z",
+      "endsAt": "2020-09-29T19:47:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "96b5ecb67f59a54f"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetMisScheduled",
+        "daemonset": "fluentd",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "1 Pods of DaemonSet openshift-logging/fluentd are running where they are not supposed to run."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_misscheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "97ef02e236fb7c59"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetMisScheduled",
+        "daemonset": "machine-config-server",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-machine-config-operator",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "1 Pods of DaemonSet openshift-machine-config-operator/machine-config-server are running where they are not supposed to run."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_misscheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "a10735c7121691d9"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetMisScheduled",
+        "daemonset": "multus-admission-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-multus",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "1 Pods of DaemonSet openshift-multus/multus-admission-controller are running where they are not supposed to run."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_misscheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "7c7a1df98efe3667"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetMisScheduled",
+        "daemonset": "sdn-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "1 Pods of DaemonSet openshift-sdn/sdn-controller are running where they are not supposed to run."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_misscheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "a6e240da01f17a7f"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "controller-manager",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-controller-manager",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 66.67% of the desired Pods of DaemonSet openshift-controller-manager/controller-manager are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "ed637f1ff3f6eb28"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "dns-default",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-dns",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-dns/dns-default are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "0e3ffe2caf07f02c"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "machine-config-daemon",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-machine-config-operator",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-machine-config-operator/machine-config-daemon are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "77a133938ac7d3cc"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "multus",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-multus",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-multus/multus are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "250d91fb0dc471ec"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "node-ca",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-image-registry",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-image-registry/node-ca are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "dd3f131c5ff7d95e"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "node-exporter",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-monitoring",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-monitoring/node-exporter are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "6647ef1ef25fd3fe"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "ovs",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-sdn/ovs are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "cebde3b6fcb7562b"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "sdn",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-sdn/sdn are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "5b00defa92ba9098"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDaemonSetRolloutStuck",
+        "daemonset": "tuned",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-cluster-node-tuning-operator",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Only 92.86% of the desired Pods of DaemonSet openshift-cluster-node-tuning-operator/tuned are scheduled and ready."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_daemonset_status_number_ready%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%2F+kube_daemonset_status_desired_number_scheduled%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3C+1&g0.tab=1",
+      "fingerprint": "2b3b63b1e2d30058"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDeploymentReplicasMismatch",
+        "deployment": "apiserver",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-apiserver",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Deployment openshift-apiserver/apiserver has not matched the expected number of replicas for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:49:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28kube_deployment_spec_replicas%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%21%3D+kube_deployment_status_replicas_available%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%29+and+%28changes%28kube_deployment_status_replicas_updated%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B5m%5D%29+%3D%3D+0%29&g0.tab=1",
+      "fingerprint": "f86abd71a5459d34"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeDeploymentReplicasMismatch",
+        "deployment": "etcd-quorum-guard",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-machine-config-operator",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Deployment openshift-machine-config-operator/etcd-quorum-guard has not matched the expected number of replicas for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T19:06:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28kube_deployment_spec_replicas%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%21%3D+kube_deployment_status_replicas_available%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%29+and+%28changes%28kube_deployment_status_replicas_updated%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B5m%5D%29+%3D%3D+0%29&g0.tab=1",
+      "fingerprint": "25cd7d47ec2b7a0f"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "cloud-credential-operator",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-cloud-credential-operator",
+        "pod": "cloud-credential-operator-5df445cc48-g9tvf",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-cloud-credential-operator/cloud-credential-operator-5df445cc48-g9tvf (cloud-credential-operator) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T17:57:10.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "c8f11066e7538312"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "cluster-policy-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-controller-manager",
+        "pod": "kube-controller-manager-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-controller-manager/kube-controller-manager-smst3002os (cluster-policy-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:06:40.59Z",
+      "endsAt": "2020-09-29T18:09:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "b354999cb9406bfb"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "console-operator",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-console-operator",
+        "pod": "console-operator-578d7d685f-bb4d9",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-console-operator/console-operator-578d7d685f-bb4d9 (console-operator) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T17:57:10.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "cf542de6e4d42d2d"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-apiserver",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-apiserver",
+        "pod": "kube-apiserver-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-apiserver/kube-apiserver-smst3002os (kube-apiserver) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:08:40.59Z",
+      "endsAt": "2020-09-29T18:13:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "64a5723ae921d1b0"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-apiserver",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-apiserver",
+        "pod": "kube-apiserver-smst3006os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-apiserver/kube-apiserver-smst3006os (kube-apiserver) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:06:40.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "196fd2bf8b2cb8bc"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-apiserver-cert-regeneration-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-apiserver",
+        "pod": "kube-apiserver-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-apiserver/kube-apiserver-smst3002os (kube-apiserver-cert-regeneration-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:09:10.59Z",
+      "endsAt": "2020-09-29T18:12:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "82dcdb1ffa98a1d2"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-apiserver-cert-regeneration-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-apiserver",
+        "pod": "kube-apiserver-smst3006os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-apiserver/kube-apiserver-smst3006os (kube-apiserver-cert-regeneration-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:07:10.59Z",
+      "endsAt": "2020-09-29T18:10:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "cba407194597992e"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-controller-manager",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-controller-manager",
+        "pod": "kube-controller-manager-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-controller-manager/kube-controller-manager-smst3002os (kube-controller-manager) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:08:40.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "bf2362f718888023"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-controller-manager-recovery-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-controller-manager",
+        "pod": "kube-controller-manager-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-controller-manager/kube-controller-manager-smst3002os (kube-controller-manager-recovery-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:09:10.59Z",
+      "endsAt": "2020-09-29T18:12:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "d996009c4e4ac688"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-controller-manager-recovery-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-controller-manager",
+        "pod": "kube-controller-manager-smst3006os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-controller-manager/kube-controller-manager-smst3006os (kube-controller-manager-recovery-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:07:10.59Z",
+      "endsAt": "2020-09-29T18:10:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "e9f18b6dff5263f4"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "kube-scheduler",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-kube-scheduler",
+        "pod": "openshift-kube-scheduler-smst3002os",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-kube-scheduler/openshift-kube-scheduler-smst3002os (kube-scheduler) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T18:08:40.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "47611321d14eae77"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "openshift-config-operator",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-config-operator",
+        "pod": "openshift-config-operator-8d7f5cd76-hth4g",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-config-operator/openshift-config-operator-8d7f5cd76-hth4g (openshift-config-operator) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T17:58:40.59Z",
+      "endsAt": "2020-09-29T18:12:40.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "084d5f8b1e5398da"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodCrashLooping",
+        "container": "snapshot-controller",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-cluster-storage-operator",
+        "pod": "csi-snapshot-controller-584645f555-h47dw",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-cluster-storage-operator/csi-snapshot-controller-584645f555-h47dw (snapshot-controller) is restarting 0.36 times / 5 minutes."
+      },
+      "startsAt": "2020-09-29T17:57:10.59Z",
+      "endsAt": "2020-09-29T18:11:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=rate%28kube_pod_container_status_restarts_total%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D%5B15m%5D%29+%2A+60+%2A+5+%3E+0&g0.tab=1",
+      "fingerprint": "73b2225227a195e8"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "SDNPodNotReady",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "ovs-jbdbd",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "SDN pod ovs-jbdbd on node  is not ready."
+      },
+      "startsAt": "2020-09-29T19:01:44.831Z",
+      "endsAt": "2020-09-29T19:48:14.831Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_pod_status_ready%7Bcondition%3D%22true%22%2Cnamespace%3D%22openshift-sdn%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "abcd470089ce92fc"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "SDNPodNotReady",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "sdn-controller-wt798",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "SDN pod sdn-controller-wt798 on node  is not ready."
+      },
+      "startsAt": "2020-09-29T19:01:44.831Z",
+      "endsAt": "2020-09-29T19:48:14.831Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_pod_status_ready%7Bcondition%3D%22true%22%2Cnamespace%3D%22openshift-sdn%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "4ba0745b9b06baff"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "SDNPodNotReady",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-sdn",
+        "pod": "sdn-wfmch",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "SDN pod sdn-wfmch on node  is not ready."
+      },
+      "startsAt": "2020-09-29T19:01:44.831Z",
+      "endsAt": "2020-09-29T19:48:14.831Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_pod_status_ready%7Bcondition%3D%22true%22%2Cnamespace%3D%22openshift-sdn%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "db74c713d0be3d80"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-delete-app-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-delete-app-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:01:10.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "203ef0d73328be4b"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-delete-audit-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-delete-audit-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:01:10.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "7a5a8fe9f6999237"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-delete-infra-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-delete-infra-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:01:10.59Z",
+      "endsAt": "2020-09-30T17:46:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "edd56b75474d74be"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-delete-infra-1601487900",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-delete-infra-1601487900 failed to complete."
+      },
+      "startsAt": "2020-09-30T18:00:40.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "3e7e8224a5c3dff4"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-rollover-app-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-rollover-app-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:01:10.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "1a4bd36de9f13eb9"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-rollover-audit-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-rollover-audit-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:01:10.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "10316a8d6e86098d"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "KubeJobFailed",
+        "condition": "true",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "job_name": "elasticsearch-rollover-infra-1601401500",
+        "namespace": "openshift-logging",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "Job openshift-logging/elasticsearch-rollover-infra-1601401500 failed to complete."
+      },
+      "startsAt": "2020-09-29T18:14:40.59Z",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_job_failed%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%7D+%3E+0&g0.tab=1",
+      "fingerprint": "305b881aacbb28a8"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeNodeNotReady",
+        "condition": "Ready",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "namespace": "openshift-monitoring",
+        "node": "smst3004os",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning",
+        "status": "true"
+      },
+      "annotations": {
+        "message": "smst3004os has been unready for more than 15 minutes."
+      },
+      "startsAt": "2020-09-29T19:06:30.395Z",
+      "endsAt": "2020-09-29T19:48:00.395Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_node_status_condition%7Bcondition%3D%22Ready%22%2Cjob%3D%22kube-state-metrics%22%2Cstatus%3D%22true%22%7D+%3D%3D+0&g0.tab=1",
+      "fingerprint": "f06bf5a3d6659ebc"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubeNodeUnreachable",
+        "effect": "NoSchedule",
+        "endpoint": "https-main",
+        "environment": "Contingencia",
+        "instance": "10.193.10.41:8443",
+        "job": "kube-state-metrics",
+        "key": "node.kubernetes.io/unreachable",
+        "namespace": "openshift-monitoring",
+        "node": "smst3004os",
+        "pod": "kube-state-metrics-6c4fc88999-4jk96",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "kube-state-metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "smst3004os is unreachable and some workloads may be rescheduled."
+      },
+      "startsAt": "2020-09-29T18:53:30.395Z",
+      "endsAt": "2020-09-29T19:48:00.395Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=kube_node_spec_taint%7Beffect%3D%22NoSchedule%22%2Cjob%3D%22kube-state-metrics%22%2Ckey%3D%22node.kubernetes.io%2Funreachable%22%7D+%3D%3D+1&g0.tab=1",
+      "fingerprint": "657d04d55827d569"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "metrics",
+        "namespace": "openshift-dns-operator",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "100% of the metrics/metrics targets in openshift-dns-operator namespace are down."
+      },
+      "startsAt": "2020-09-29T17:52:00.163Z",
+      "endsAt": "2020-09-29T17:58:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "d6a12eed9a6de265"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "metrics",
+        "namespace": "openshift-insights",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "metrics",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "100% of the metrics/metrics targets in openshift-insights namespace are down."
+      },
+      "startsAt": "2020-09-29T17:52:00.163Z",
+      "endsAt": "2020-09-29T17:58:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "357412d665a2ee92"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "multus-admission-controller",
+        "namespace": "openshift-multus",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "multus-admission-controller",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the multus-admission-controller/multus-admission-controller targets in openshift-multus namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:48:00.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "62c53abfa1e6c5b1"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "node-exporter",
+        "namespace": "openshift-monitoring",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "node-exporter",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "14.29% of the node-exporter/node-exporter targets in openshift-monitoring namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:05:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "9b6689b8f600fef7"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertmanager": "https://10.193.6.220:9095/api/v2/alerts",
+        "alertname": "PrometheusErrorSendingAlertsToSomeAlertmanagers",
+        "endpoint": "web",
+        "environment": "Contingencia",
+        "instance": "10.193.6.25:9091",
+        "job": "prometheus-k8s",
+        "namespace": "openshift-monitoring",
+        "pod": "prometheus-k8s-0",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "prometheus-k8s",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "1.7% errors while sending alerts from Prometheus openshift-monitoring/prometheus-k8s-0 to Alertmanager https://10.193.6.220:9095/api/v2/alerts.",
+        "summary": "Prometheus has encountered more than 1% errors sending alerts to a specific Alertmanager."
+      },
+      "startsAt": "2020-09-29T17:58:56.728Z",
+      "endsAt": "2020-09-29T18:02:26.728Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28rate%28prometheus_notifications_errors_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29+%2F+rate%28prometheus_notifications_sent_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29%29+%2A+100+%3E+1&g0.tab=1",
+      "fingerprint": "2f9be3baf6ac6640"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertmanager": "https://10.193.8.54:9095/api/v2/alerts",
+        "alertname": "PrometheusErrorSendingAlertsToSomeAlertmanagers",
+        "endpoint": "web",
+        "environment": "Contingencia",
+        "instance": "10.193.6.25:9091",
+        "job": "prometheus-k8s",
+        "namespace": "openshift-monitoring",
+        "pod": "prometheus-k8s-0",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "prometheus-k8s",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "2.6% errors while sending alerts from Prometheus openshift-monitoring/prometheus-k8s-0 to Alertmanager https://10.193.8.54:9095/api/v2/alerts.",
+        "summary": "Prometheus has encountered more than 1% errors sending alerts to a specific Alertmanager."
+      },
+      "startsAt": "2020-09-29T17:57:56.728Z",
+      "endsAt": "2020-09-29T18:01:56.728Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28rate%28prometheus_notifications_errors_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29+%2F+rate%28prometheus_notifications_sent_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29%29+%2A+100+%3E+1&g0.tab=1",
+      "fingerprint": "3bcdc3b360bfbee9"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertmanager": "https://10.193.6.220:9095/api/v2/alerts",
+        "alertname": "PrometheusErrorSendingAlertsToSomeAlertmanagers",
+        "endpoint": "web",
+        "environment": "Contingencia",
+        "instance": "10.193.8.17:9091",
+        "job": "prometheus-k8s",
+        "namespace": "openshift-monitoring",
+        "pod": "prometheus-k8s-1",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "prometheus-k8s",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "3.6% errors while sending alerts from Prometheus openshift-monitoring/prometheus-k8s-1 to Alertmanager https://10.193.6.220:9095/api/v2/alerts.",
+        "summary": "Prometheus has encountered more than 1% errors sending alerts to a specific Alertmanager."
+      },
+      "startsAt": "2020-09-29T17:59:56.728Z",
+      "endsAt": "2020-09-29T18:02:26.728Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28rate%28prometheus_notifications_errors_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29+%2F+rate%28prometheus_notifications_sent_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29%29+%2A+100+%3E+1&g0.tab=1",
+      "fingerprint": "642ddfe1662afce4"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertmanager": "https://10.193.8.54:9095/api/v2/alerts",
+        "alertname": "PrometheusErrorSendingAlertsToSomeAlertmanagers",
+        "endpoint": "web",
+        "environment": "Contingencia",
+        "instance": "10.193.8.17:9091",
+        "job": "prometheus-k8s",
+        "namespace": "openshift-monitoring",
+        "pod": "prometheus-k8s-1",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "prometheus-k8s",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "1.8% errors while sending alerts from Prometheus openshift-monitoring/prometheus-k8s-1 to Alertmanager https://10.193.8.54:9095/api/v2/alerts.",
+        "summary": "Prometheus has encountered more than 1% errors sending alerts to a specific Alertmanager."
+      },
+      "startsAt": "2020-09-29T17:56:56.728Z",
+      "endsAt": "2020-09-29T18:02:26.728Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=%28rate%28prometheus_notifications_errors_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29+%2F+rate%28prometheus_notifications_sent_total%7Bjob%3D~%22prometheus-k8s%7Cprometheus-user-workload%22%7D%5B5m%5D%29%29+%2A+100+%3E+1&g0.tab=1",
+      "fingerprint": "46b5c41cb0e1f9b9"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "scheduler",
+        "namespace": "openshift-kube-scheduler",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "scheduler",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "33.33% of the scheduler/scheduler targets in openshift-kube-scheduler namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:47:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "293e87fe3a4a713a"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "TargetDown",
+        "environment": "Contingencia",
+        "job": "telemeter-client",
+        "namespace": "openshift-monitoring",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "service": "telemeter-client",
+        "severity": "warning"
+      },
+      "annotations": {
+        "message": "100% of the telemeter-client/telemeter-client targets in openshift-monitoring namespace are down."
+      },
+      "startsAt": "2020-09-29T19:00:30.163Z",
+      "endsAt": "2020-09-29T19:06:30.163Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=100+%2A+%28count+by%28job%2C+namespace%2C+service%29+%28up+%3D%3D+0%29+%2F+count+by%28job%2C+namespace%2C+service%29+%28up%29%29+%3E+10&g0.tab=1",
+      "fingerprint": "a539891aebc9d459"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodNotReady",
+        "environment": "Contingencia",
+        "namespace": "openshift-apiserver",
+        "pod": "apiserver-6d4896fdb9-89mcd",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-apiserver/apiserver-6d4896fdb9-89mcd has been in a non-ready state for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T18:00:40.59Z",
+      "endsAt": "2020-09-29T18:18:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=sum+by%28namespace%2C+pod%29+%28max+by%28namespace%2C+pod%29+%28kube_pod_status_phase%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%2Cphase%3D~%22Pending%7CUnknown%22%7D%29+%2A+on%28namespace%2C+pod%29+group_left%28owner_kind%29+topk+by%28namespace%2C+pod%29+%281%2C+max+by%28namespace%2C+pod%2C+owner_kind%29+%28kube_pod_owner%7Bowner_kind%21%3D%22Job%22%7D%29%29%29+%3E+0&g0.tab=1",
+      "fingerprint": "43d5805896b73049"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodNotReady",
+        "environment": "Contingencia",
+        "namespace": "openshift-apiserver",
+        "pod": "apiserver-6d4896fdb9-pnfmk",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-apiserver/apiserver-6d4896fdb9-pnfmk has been in a non-ready state for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T19:08:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=sum+by%28namespace%2C+pod%29+%28max+by%28namespace%2C+pod%29+%28kube_pod_status_phase%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%2Cphase%3D~%22Pending%7CUnknown%22%7D%29+%2A+on%28namespace%2C+pod%29+group_left%28owner_kind%29+topk+by%28namespace%2C+pod%29+%281%2C+max+by%28namespace%2C+pod%2C+owner_kind%29+%28kube_pod_owner%7Bowner_kind%21%3D%22Job%22%7D%29%29%29+%3E+0&g0.tab=1",
+      "fingerprint": "ac3050b34177a396"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodNotReady",
+        "environment": "Contingencia",
+        "namespace": "openshift-machine-config-operator",
+        "pod": "etcd-quorum-guard-65bfd89668-fht5n",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-machine-config-operator/etcd-quorum-guard-65bfd89668-fht5n has been in a non-ready state for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T18:00:40.59Z",
+      "endsAt": "2020-09-29T18:18:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=sum+by%28namespace%2C+pod%29+%28max+by%28namespace%2C+pod%29+%28kube_pod_status_phase%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%2Cphase%3D~%22Pending%7CUnknown%22%7D%29+%2A+on%28namespace%2C+pod%29+group_left%28owner_kind%29+topk+by%28namespace%2C+pod%29+%281%2C+max+by%28namespace%2C+pod%2C+owner_kind%29+%28kube_pod_owner%7Bowner_kind%21%3D%22Job%22%7D%29%29%29+%3E+0&g0.tab=1",
+      "fingerprint": "a45f9410d9bf588a"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "KubePodNotReady",
+        "environment": "Contingencia",
+        "namespace": "openshift-machine-config-operator",
+        "pod": "etcd-quorum-guard-65bfd89668-njkmr",
+        "prometheus": "openshift-monitoring/k8s",
+        "region": "Vera",
+        "severity": "critical"
+      },
+      "annotations": {
+        "message": "Pod openshift-machine-config-operator/etcd-quorum-guard-65bfd89668-njkmr has been in a non-ready state for longer than 15 minutes."
+      },
+      "startsAt": "2020-09-29T19:08:40.59Z",
+      "endsAt": "2020-09-29T19:48:10.59Z",
+      "generatorURL": "https://prometheus-k8s-openshift-monitoring.apps.cltrcont.bancocredicoop.coop/graph?g0.expr=sum+by%28namespace%2C+pod%29+%28max+by%28namespace%2C+pod%29+%28kube_pod_status_phase%7Bjob%3D%22kube-state-metrics%22%2Cnamespace%3D~%22%28openshift-.%2A%7Ckube-.%2A%7Cdefault%7Clogging%29%22%2Cphase%3D~%22Pending%7CUnknown%22%7D%29+%2A+on%28namespace%2C+pod%29+group_left%28owner_kind%29+topk+by%28namespace%2C+pod%29+%281%2C+max+by%28namespace%2C+pod%2C+owner_kind%29+%28kube_pod_owner%7Bowner_kind%21%3D%22Job%22%7D%29%29%29+%3E+0&g0.tab=1",
+      "fingerprint": "90f39945c164b25f"
+    }
+  ],
+  "groupLabels": {},
+  "commonLabels": {
+    "environment": "Contingencia",
+    "prometheus": "openshift-monitoring/k8s",
+    "region": "Vera"
+  },
+  "commonAnnotations": {},
+  "externalURL": "https://alertmanager-main-openshift-monitoring.apps.cltrcont.bancocredicoop.coop",
+  "version": "4",
+  "groupKey": "{}/{severity=~\"^(?:critical|warning)$\"}:{}"
+}
