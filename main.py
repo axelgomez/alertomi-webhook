@@ -289,6 +289,7 @@ def ParsearAlerta(alerta):
     )
 
     clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
+    # Si la clave no existe en el diccionario -> retornar
     if clave_dict not in variables_OMI:
       mensaje_recibido = ""
       if hasattr(alerta,'startsAt'):
@@ -296,6 +297,7 @@ def ParsearAlerta(alerta):
           mensaje_recibido += "{}".format(alerta.startsAt)
       mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
       print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
+      return alerta
 
     mensaje = "{}".format(variables_OMI[clave_dict]['MENSAJE'])
     if hasattr(alerta.labels,'region'):
