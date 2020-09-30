@@ -124,10 +124,10 @@ class Labels(BaseModel):
 
   
 #Establish SMTP Connection
-s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
+#s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
   
 #Start TLS based SMTP Session
-s.starttls() 
+#s.starttls() 
  
 #Login Using Your Email ID & Password
 #s.login("your-email@id.com", "your-email-ID-PASSWORD")
