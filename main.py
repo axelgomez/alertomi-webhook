@@ -280,8 +280,8 @@ def ParsearAlerta(alerta):
     aplicacion = alerta.labels.job
     titulo = ""
     if hasattr(alerta.labels,'instance'):
-        if alerta.labels.instance != None:
-            titulo += "{} - ".format(alerta.labels.instance)
+      if alerta.labels.instance != None:
+          titulo += "{} - ".format(alerta.labels.instance)
     
     titulo += "{} - {}".format(
         alerta.labels.alertname,
@@ -292,26 +292,26 @@ def ParsearAlerta(alerta):
     if clave_dict not in variables_OMI:
     	mensaje_recibido = ""
     	if hasattr(alerta,'startsAt'):
-        	if alerta.startsAt != None:
-        		mensaje_recibido += "{}".format(alerta.startsAt)
-		mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
-    	print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
+        if alerta.startsAt != None:
+        mensaje_recibido += "{}".format(alerta.startsAt)
+    mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
+    print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
 
     mensaje = "{}".format(variables_OMI[clave_dict]['MENSAJE'])
     if hasattr(alerta.labels,'region'):
-        if alerta.labels.region != None:
-            mensaje += " - {}".format(alerta.labels.region)
+      if alerta.labels.region != None:
+        mensaje += " - {}".format(alerta.labels.region)
     if hasattr(alerta.labels,'environment'):
-        if alerta.labels.environment != None:
-            mensaje += " - {}".format(alerta.labels.environment)
+      if alerta.labels.environment != None:
+        mensaje += " - {}".format(alerta.labels.environment)
     indicaciones = variables_OMI[clave_dict]['INDICACIONES']  
     componente = variables_OMI[clave_dict]['COMPONENTE']
     if hasattr(alerta.labels,'node'):
-        if alerta.labels.node != None:
-            mensaje += " - node:{}".format(alerta.labels.node)
+      if alerta.labels.node != None:
+        mensaje += " - node:{}".format(alerta.labels.node)
     if hasattr(alerta.labels,'namespace'):
-        if alerta.labels.namespace != None:
-            mensaje += " - namespace:{}".format(alerta.labels.namespace)
+      if alerta.labels.namespace != None:
+        mensaje += " - namespace:{}".format(alerta.labels.namespace)
 
     if alerta.status == 'resolved':
       estado = "CESE"
@@ -337,9 +337,9 @@ def ParsearAlerta(alerta):
     mensaje_recibido = ""
     mensaje_enviado = ""
     if hasattr(alerta,'startsAt'):
-        if alerta.startsAt != None:
-            mensaje_recibido += "{}".format(alerta.startsAt)
-            mensaje_enviado += "{}".format(alerta.startsAt)
+      if alerta.startsAt != None:
+        mensaje_recibido += "{}".format(alerta.startsAt)
+        mensaje_enviado += "{}".format(alerta.startsAt)
     mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
     mensaje_enviado += "{}|{}|{}|{}|{}|{}".format(aplicacion,
                                                   titulo,
@@ -363,12 +363,12 @@ def read_root():
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    json_error = JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=jsonable_encoder({"detail": exc.errors(), "body": exc.body})
-    )
-    print(json_error)
-    return json_error
+  json_error = JSONResponse(
+    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+    content=jsonable_encoder({"detail": exc.errors(), "body": exc.body})
+  )
+  print(json_error)
+  return json_error
 
 
 @app.get("/items/{item_id}")
