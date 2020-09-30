@@ -124,7 +124,7 @@ class Labels(BaseModel):
 
   
 #Establish SMTP Connection
-s = smtplib.SMTP('http://smtp.bancocredicoop.coop', 25) 
+s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
   
 #Start TLS based SMTP Session
 s.starttls() 
