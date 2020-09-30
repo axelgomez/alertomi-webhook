@@ -129,17 +129,17 @@ class Labels(BaseModel):
 #s.login("your-email@id.com", "your-email-ID-PASSWORD")
 
 class Annotations(BaseModel):
-  message: str
-#  description: str
-#  summary: str
+  message: Optional[str]
+  description: Optional[str]
+  summary: Optional[str]
 
 class Alerts(BaseModel):
   status: str
   labels: Labels
   annotations: Annotations
-  startsAt: str
-  endsAt: str
-  generatorURL: str
+  startsAt: Optional[str]
+  endsAt: Optional[str]
+  generatorURL: Optional[str]
   fingerprint: Optional[str]
 
 
@@ -151,23 +151,23 @@ class Alerts(BaseModel):
 
 class CommonLabels(BaseModel):
   alertname: str
-  effect: str
-  endpoint: str
-  instance: str
-  job: str
-  key: str
-  namespace: str
-  node: str
-  pod: str
-  prometheus: str
-  service: str
   severity: str
+  effect: Optional[str]
+  endpoint: Optional[str]
+  instance: Optional[str]
+  job: Optional[str]
+  key: Optional[str]
+  namespace: Optional[str]
+  node: Optional[str]
+  pod: Optional[str]
+  prometheus: Optional[str]
+  service: Optional[str]
 
 
 class CommonAnnotations(BaseModel):
   description: Optional[str]
   summary: Optional[str]
-  message: str
+  message: Optional[str]
 
 
 class Alertas(BaseModel):
@@ -177,9 +177,9 @@ class Alertas(BaseModel):
   #groupLabels: GroupLabels
   #commonLabels: CommonLabels
   #commonAnnotations: CommonAnnotations
-  externalURL: str
-  version: str
-  groupKey: str
+  externalURL: Optional[str]
+  version: Optional[str]
+  groupKey: Optional[str]
   truncatedAlerts: Optional[str]
 
 
