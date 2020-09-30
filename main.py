@@ -289,6 +289,14 @@ def ParsearAlerta(alerta):
     )
 
     clave_dict = "({},{})".format(alerta.labels.alertname,alerta.labels.severity)
+    if clave_dict not in variables_OMI:
+    	mensaje_recibido = ""
+    	if hasattr(alerta,'startsAt'):
+        	if alerta.startsAt != None:
+        		mensaje_recibido += "{}".format(alerta.startsAt)
+		mensaje_recibido += " - Recibido: {{{}}}".format(alerta)
+    	print("WARN - No existe en diccionario - {}".format(mensaje_recibido))
+
     mensaje = "{}".format(variables_OMI[clave_dict]['MENSAJE'])
     if hasattr(alerta.labels,'region'):
         if alerta.labels.region != None:
@@ -339,8 +347,8 @@ def ParsearAlerta(alerta):
                                                   estado,
                                                   componente,
                                                   indicaciones)
-    print("{}".format(mensaje_recibido))
-    print("{}".format(mensaje_enviado))
+    print("INFO - {}".format(mensaje_recibido))
+    print("INFO - {}".format(mensaje_enviado))
     return alerta
   except RequestValidationError as e:
     raise RequestValidationError(r,e)
