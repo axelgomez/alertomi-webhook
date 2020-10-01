@@ -120,11 +120,7 @@ class Labels(BaseModel):
   type: Optional[str]
 
   
-#Establish SMTP Connection
-s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
-  
-#Start TLS based SMTP Session
-s.starttls() 
+
  
 #Login Using Your Email ID & Password
 #s.login("your-email@id.com", "your-email-ID-PASSWORD")
@@ -250,6 +246,10 @@ class Item(BaseModel):
 
 def ParsearAlerta(alerta):
   try:
+    #Establish SMTP Connection
+    s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
+    #Start TLS based SMTP Session
+    s.starttls() 
     #se obtienen las variables a enviar al omi-notify-update.sh
     # ${APLICACION}|${TITULO}|${DESCRIPCION}|${SEVERIDAD_OMI}|${PRIORIDAD_OMI}|${ESTADO_OMI}|${CATEGORIA}
     f = open("/etc/alert-omi-webhook-dictionary/alerts-dictionary","r")
