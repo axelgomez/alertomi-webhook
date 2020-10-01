@@ -120,13 +120,13 @@ class Labels(BaseModel):
 
   
 #Establish SMTP Connection
-#s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
+s = smtplib.SMTP('smtp.bancocredicoop.coop', 25) 
   
 #Start TLS based SMTP Session
-#s.starttls() 
+s.starttls() 
  
 #Login Using Your Email ID & Password
-#s.login("your-email@id.com", "your-email-ID-PASSWORD")
+s.login("your-email@id.com", "your-email-ID-PASSWORD")
 
 class Annotations(BaseModel):
   message: Optional[str]
@@ -325,15 +325,15 @@ def ParsearAlerta(alerta):
       r = requests.post(config['ruta_snsc'], params=payload)
 
     #Enviar Email
-#    if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
-#      tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
-#      subject= "| ".join(tupla) 
-#      message="""From: {}
-#      To: {}\n
-#      Subject: {}\n
-#      {}
-#      """.format(config['sender_alertas'],config['dest_alertas'],subject,alerta)
-#      s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
+    if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
+      tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
+      subject= "| ".join(tupla) 
+      message="""From: {}
+      To: {}\n
+      Subject: {}\n
+      {}
+      """.format(config['sender_alertas'],config['dest_alertas'],subject,alerta)
+      s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
     #Terminating the SMTP Session
 #    s.quit()
     mensaje_recibido = ""
