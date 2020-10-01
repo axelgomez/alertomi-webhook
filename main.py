@@ -335,9 +335,12 @@ def ParsearAlerta(alerta):
           tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.severity,alerta.labels.region)
       else:
         tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.severity,alerta.labels.region)
-      subject= "| ".join(tupla) 
+      subject= "| ".join(tupla)
+      destinos = config["dest_alertas"].split(",")
       mime_message["Subject"] = Header(subject,'utf-8')
-      s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
+      mime_message["From"] = config['sender_alertas'] 
+      mime_message["To"] = ", ".join(recipients)
+      s.sendmail(config['sender_alertas'], destinos, mime_message.as_string())
       print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
       s.quit()
@@ -360,7 +363,7 @@ def ParsearAlerta(alerta):
   except RequestValidationError as e:
     mime_message = MIMEText("{}".format(e),"plain","utf-8")
     mime_message["Subject"] = Header("Exception in Webhook API",'utf-8')
-    s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
+    s.sendmail(config['sender_alertas'], config['dest_exceptions'], mime_message.as_string())
     raise RequestValidationError(r,e)
   
 
