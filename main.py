@@ -355,9 +355,8 @@ def ParsearAlerta(alerta):
     mime_message = MIMEText("{}".format(e),"plain","utf-8")
     mime_message["Subject"] = Header("Exception in Webhook API",'utf-8')
     s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
-    s.quit()
     raise RequestValidationError(r,e)
-
+  
 
 app = FastAPI()
 
