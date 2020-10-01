@@ -333,7 +333,7 @@ def ParsearAlerta(alerta):
       mime_message["To"] = config["dest_alertas"]
       mime_message["Subject"] = subject
       
-      s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
+      s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string().encode('ascii'))
       print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
       s.quit()
