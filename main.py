@@ -79,6 +79,7 @@ from pydantic import BaseModel
 from datetime import date, timedelta, datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.header import Header
 import requests
 import json
 import smtplib
@@ -329,9 +330,9 @@ def ParsearAlerta(alerta):
       mime_message = MIMEText(alerta,"plain","utf-8")
       tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
       subject= "| ".join(tupla) 
-      mime_message["From"] = config["sender_alertas"]
-      mime_message["To"] = config["dest_alertas"]
-      mime_message["Subject"] = subject
+      #mime_message["From"] = config["sender_alertas"]
+      #mime_message["To"] = config["dest_alertas"]
+      mime_message["Subject"] = Header(subject,'utf-8')
       s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
       print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
