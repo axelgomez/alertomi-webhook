@@ -334,6 +334,7 @@ def ParsearAlerta(alerta):
       {}
       """.format(config['sender_alertas'],config['dest_alertas'],subject,alerta)
       s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
+      print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
 #    s.quit()
     mensaje_recibido = ""
