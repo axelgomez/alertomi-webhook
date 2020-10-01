@@ -326,15 +326,17 @@ def ParsearAlerta(alerta):
 
     #Enviar Email
     if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
+      mime_message = MIMEText(alerta,"plain")
       tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
       subject= "| ".join(tupla) 
-      message="""
-      Subject: {}\n\n{}
-      """.format(subject,alerta)
-      s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
+      mime_message["From"] = config["sender_alertas"]
+      mime_message["To"] = config["dest_alertas"]
+      mime_message["Subject"] = subject
+      
+      s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
       print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
-#    s.quit()
+      s.quit()
     mensaje_recibido = ""
     mensaje_enviado = ""
     if hasattr(alerta,'startsAt'):
