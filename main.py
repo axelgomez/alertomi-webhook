@@ -328,11 +328,10 @@ def ParsearAlerta(alerta):
     if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
       tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
       subject= "| ".join(tupla) 
-      message="""From: {}
-      To: {}\n
-      Subject: {}\n
+      message="""
+      Subject: {}\n\n
       {}
-      """.format(config['sender_alertas'],config['dest_alertas'],subject,alerta)
+      """.format(subject,alerta)
       s.sendmail(config['sender_alertas'], config['dest_alertas'], message)
       print("Mail Enviado Subject:{}".format(subject))
     #Terminating the SMTP Session
