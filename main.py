@@ -330,8 +330,6 @@ def ParsearAlerta(alerta):
       mime_message = MIMEText("{}".format(alerta),"plain","utf-8")
       tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
       subject= "| ".join(tupla) 
-      #mime_message["From"] = config["sender_alertas"]
-      #mime_message["To"] = config["dest_alertas"]
       mime_message["Subject"] = Header(subject,'utf-8')
       s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
       print("Mail Enviado Subject:{}".format(subject))
@@ -354,6 +352,10 @@ def ParsearAlerta(alerta):
     print("INFO - {}".format(mensaje_enviado))
     return alerta
   except RequestValidationError as e:
+    mime_message = MIMEText("{}".format(e),"plain","utf-8")
+    mime_message["Subject"] = Header("Exception in Webhooh API",'utf-8')
+    s.sendmail(config['sender_alertas'], config['dest_alertas'], mime_message.as_string())
+    s.quit()
     raise RequestValidationError(r,e)
 
 
