@@ -126,7 +126,7 @@ s = smtplib.SMTP('smtp.bancocredicoop.coop', 25)
 s.starttls() 
  
 #Login Using Your Email ID & Password
-s.login("your-email@id.com", "your-email-ID-PASSWORD")
+#s.login("your-email@id.com", "your-email-ID-PASSWORD")
 
 class Annotations(BaseModel):
   message: Optional[str]
