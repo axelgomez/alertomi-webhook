@@ -327,6 +327,7 @@ def ParsearAlerta(alerta):
 
     #Enviar Email
     if("EMAIL" in variables_OMI[clave_dict]["ENVIO"]):
+      alerta.encode("ascii", errors="ignore")
       mime_message = MIMEText(alerta,"plain","utf-8")
       tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
       subject= "| ".join(tupla) 
