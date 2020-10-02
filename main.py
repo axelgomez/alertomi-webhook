@@ -258,9 +258,6 @@ def ParsearAlerta(alerta):
     f_config = open("/etc/alert-omi-webhook-dictionary/alert-webhook-config","r")
     file_config = f_config.read()
     config = json.loads(file_config)
-    #Email Body Content
-    
-   
 
     if (alerta.status == "firing"):
       estado_servicio = alerta.labels.severity.upper()
@@ -330,19 +327,19 @@ def ParsearAlerta(alerta):
       mime_message = MIMEText("{}".format(alerta),"plain","utf-8")
       if hasattr(alerta.labels,'namespace'):
         if alerta.labels.namespace != None:
-          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
+          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
         else:
-          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.severity,alerta.labels.region)
+          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
       else:
-        tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.labels.severity,alerta.labels.region)
-      subject= "| ".join(tupla)
+        tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
+      subject= " | ".join(tupla)
       destinos = config["dest_alertas"].split(",")
       mime_message["Subject"] = Header(subject,'utf-8')
       mime_message["From"] = config['sender_alertas'] 
       mime_message["To"] = ", ".join(destinos)
       s.sendmail(config['sender_alertas'], destinos, mime_message.as_string())
       print("Mail Enviado Subject:{}".format(subject))
-    #Terminating the SMTP Session
+      #Terminating the SMTP Session
       s.quit()
     mensaje_recibido = ""
     mensaje_enviado = ""
@@ -362,8 +359,11 @@ def ParsearAlerta(alerta):
     return alerta
   except RequestValidationError as e:
     mime_message = MIMEText("{}".format(e),"plain","utf-8")
-    mime_message["Subject"] = Header("Exception in Webhook API",'utf-8')
-    s.sendmail(config['sender_alertas'], config['dest_exceptions'], mime_message.as_string())
+    destinos = config["dest_exceptions"].split(",")
+    mime_message["Subject"] = Header("Webhook API | Excepcion en aplicacion",'utf-8')
+    mime_message["From"] = config['sender_alertas'] 
+    mime_message["To"] = ", ".join(destinos)
+    s.sendmail(config['sender_alertas'], destinos, mime_message.as_string())
     raise RequestValidationError(r,e)
   
 
@@ -371,7 +371,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-  return {"Status": "Ok"}
+  return {"status": "OK"}
 
 
 @app.exception_handler(RequestValidationError)
@@ -414,5 +414,3 @@ def actualizar_alerta(
         alertas: Alertas):
     dict_alertas = alertas.dict()
     return dict_alertas
-
-
