@@ -327,11 +327,11 @@ def ParsearAlerta(alerta):
       mime_message = MIMEText("{}".format(alerta),"plain","utf-8")
       if hasattr(alerta.labels,'namespace'):
         if alerta.labels.namespace != None:
-          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
+          tupla = ("OMI | ESB-CONTENEDORES",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.namespace,alerta.labels.severity,alerta.labels.region)
         else:
-          tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
+          tupla = ("OMI | ESB-CONTENEDORES",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
       else:
-        tupla = ("OMI",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
+        tupla = ("OMI | ESB-CONTENEDORES",alerta.labels.alertname,alerta.labels.environment,alerta.status.upper(),alerta.labels.severity,alerta.labels.region)
       subject= " | ".join(tupla)
       destinos = config["dest_alertas"].split(",")
       mime_message["Subject"] = Header(subject,'utf-8')
